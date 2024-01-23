@@ -59,41 +59,25 @@ void Monster::Update()
 		case 0:
 			if (x < 9)
 			{
-				x++;
-				gotoxy(0, 20);
-				cout << "                              ";
-				gotoxy(0, 20);
-				
+				x++;		
 			}			
 			break;
 		case 1:
 			if (x > 1)
 			{
-				x--;
-				gotoxy(0, 20);
-				cout << "                              ";
-				gotoxy(0, 20);
-				
+				x--;	
 			}
 			break;
 		case 2:
 			if (y < 9)
 			{
-				y++;
-				gotoxy(0, 20);
-				cout << "                              ";
-				gotoxy(0, 20);
-				
+				y++;	
 			}		
 			break;
 		case 3:
 			if (y > 1)
 			{
-				y--;
-				gotoxy(0, 20);
-				cout << "                              ";
-				gotoxy(0, 20);
-				
+				y--;		
 			}
 			break;
 		default:

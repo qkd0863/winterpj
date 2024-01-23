@@ -3,6 +3,11 @@
 
 Map::Map()
 {
+	for (int i = 0;i < sizeof(O) / sizeof(O[0]);i++)
+	{
+		O[i] = nullptr;
+	}
+
 	for (int i = 0;i < Map_y;i++)
 	{
 		for (int j = 0;j < Map_x;j++)
@@ -10,25 +15,56 @@ Map::Map()
 			map[j][i] = '+';
 		}
 	}
-	divideDungeon(5, 0, 0, Map_x, Map_y);
-	
+	divideDungeon(2, 0, 0, Map_x, Map_y);
+	draw = true;
 }	
 
-void Map::Draw()
+void Map::AddObject(Player* _P)
 {
-	for (int i = 0;i < Map_y;i++)
+	for (int i = 0;i < sizeof(O) / sizeof(O[0]);i++)
 	{
-		for (int j = 0;j < Map_x;j++)
+		if (O[i] == nullptr)
 		{
-			gotoxy(j * 2, i);
-			cout << map[j][i];
-			
+			O[i] = _P;
+			break;
 		}
 	}
 }
 
+
+void Map::AddObject(Monster* _M)
+{
+	for (int i = 0;i < sizeof(O) / sizeof(O[0]);i++)
+	{
+		if (O[i] == nullptr)
+		{
+			O[i] = _M;
+			break;
+		}
+	}
+}
+
+void Map::Draw()
+{
+	if (draw)
+	{
+		for (int i = 0;i < Map_x;i++)
+		{
+			for (int j = 0;j < Map_y;j++)
+			{
+				gotoxy(j * 2, i);
+				cout << map[j][i];
+			}
+		}
+	}
+	
+	draw = false;
+}
+
 void Map::Update()
 {
+
+
 }
 
 Dungeonlocation Map::divideDungeon(int depth, int r1, int c1, int r2, int c2)

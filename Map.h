@@ -1,7 +1,8 @@
 #pragma once
 #include "Object.h"
 #include "setting.h"
-
+#include "Player.h"
+#include "Monster.h"
 
 struct Dungeonlocation
 {
@@ -13,13 +14,17 @@ struct Dungeonlocation
 class Map :public Object
 {
 private:
-	int seed = 0;
+	BOOL draw;
 	char map[Map_y][Map_x];
+	Object* O[10];
 public:
 	Map();
 	virtual void Draw();
 	virtual void Update();
 	Dungeonlocation divideDungeon(int depth, int r1, int c1, int r2, int c2);
+
+	void AddObject(Player* _P);
+	void AddObject(Monster* _M);
 };
 
 

@@ -6,5 +6,7 @@ private:
 public:
 	virtual void Draw();
 	virtual void Update();
+	virtual int getX();
+	virtual int getY();
 };
 

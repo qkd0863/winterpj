@@ -35,6 +35,9 @@ int main()
 	G.AddObject(&MS);
 	G.AddObject(&P);
 
+	M.AddObject(&P);
+	M.AddObject(&MS);
+
 	system("mode con:cols=200 lines=60");
 	while (1)
 	{

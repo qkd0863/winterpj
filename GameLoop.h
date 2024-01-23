@@ -10,8 +10,6 @@ class GameLoop
 {
 private:
 	Object* O[10];
-	Player** SP = nullptr;
-	Map** SM = nullptr;
 public:
 	GameLoop();
 	void AddObject(Player *_P);
