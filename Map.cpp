@@ -135,6 +135,8 @@ Dungeonlocation Map::divideDungeon(int depth, int r1, int c1, int r2, int c2)
 		}
 	}
 
+
+
 	location.r1 = temp1.r1, location.r2 = temp1.r2, location.c1 = temp1.c1, location.c2 = temp1.c2;
 	location.r3 = temp2.r3, location.r4 = temp2.r4, location.c3 = temp2.c3, location.c4 = temp2.c4;
 
