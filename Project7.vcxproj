@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Monster.cpp" />
@@ -134,9 +135,11 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="setting.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="소스.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="GameLoop.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Monster.h" />
@@ -144,6 +147,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="setting.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
