@@ -27,14 +27,19 @@ void Player::action()
 
 void Player::attack()
 {
-	gotoxy((x + 1) * 2, y);
+	/*gotoxy((x + 1) * 2, y);
 	cout << "X";
 	gotoxy((x - 1) * 2, y);
 	cout << "X";
 	gotoxy(x * 2, (y + 1));
 	cout << "X";
 	gotoxy(x * 2, (y - 1));
-	cout << "X";
+	cout << "X";*/
+
+	for (auto i : wp.bt)
+	{
+		Change_BT_Dir(dir, &i);
+	}
 }
 
 void Player::DrawSpace(int a, int b)
@@ -56,6 +61,11 @@ void Player::Draw()
 {
 	gotoxy(x * 2, y);
 	cout << "P";
+
+	for (auto& i : bt)
+	{
+		i.Draw();
+	}
 }
 
 void Player::Update()
@@ -74,8 +84,23 @@ void Player::Update()
 		this->KeyEvent(c);
 	}
 
-	if (count <= 0)
-		this->DrawSpace(atkx, atky);
+	//if (count <= 0)
+	//	this->DrawSpace(atkx, atky);
+
+	for (auto it = bt.begin(); it != bt.end();)
+	{
+		it->Update();
+		if (it->getX() <= 0 || it->getX() >= Map_x || it->getY() <= 0 || it->getY() >= Map_y)
+		{
+			gotoxy(it->getX() * 2, it->getY());
+			cout << " ";
+			it = bt.erase(it);
+		}
+		else
+		{
+			++it;
+		}
+	}
 }
 
 void Player::KeyEvent(int input)
@@ -93,6 +118,7 @@ void Player::KeyEvent(int input)
 		gotoxy(x * 2, y);
 		cout << " ";
 		x--;
+		dir = static_cast<int>(Pdir::LEFT);
 		break;
 	case RIGHT:
 		if (x >= Map_x - 1)
@@ -100,6 +126,7 @@ void Player::KeyEvent(int input)
 		gotoxy(x * 2, y);
 		cout << " ";
 		x++;
+		dir = static_cast<int>(Pdir::RIGHT);
 		break;
 	case UP:
 		if (y <= 1)
@@ -107,6 +134,7 @@ void Player::KeyEvent(int input)
 		gotoxy(x * 2, y);
 		cout << " ";
 		y--;
+		dir = static_cast<int>(Pdir::UP);
 		break;
 	case DOWN:
 		if (y >= Map_y - 1)
@@ -114,14 +142,15 @@ void Player::KeyEvent(int input)
 		gotoxy(x * 2, y);
 		cout << " ";
 		y++;
+		dir = static_cast<int>(Pdir::DOWN);
 		break;
 	case ESC:
 		_getch();
 		//exit(0);
 		break;
 	case SPACE:
-		atkx = x;atky = y;
-		count = 1;
+		//atkx = x;atky = y;
+		//count = 1;
 		this->attack();
 		break;
 	case ENTER:
@@ -131,5 +160,33 @@ void Player::KeyEvent(int input)
 		break;
 	}
 	
+}
 
+void Player::Change_BT_Dir(int _dir, Bullet* bullet)
+{
+	switch (_dir)
+	{
+	case static_cast<int>(Pdir::RIGHT):
+		bt.emplace_back(getX() + 1, getY(), bullet->getDX(), bullet->getDY(), wp.get_speed());
+		break;
+	case static_cast<int>(Pdir::UP):
+		bt.emplace_back(getX(), getY() - 1, bullet->getDY(), -(bullet->getDX()), wp.get_speed());
+		break;
+	case static_cast<int>(Pdir::LEFT):
+		bt.emplace_back(getX() - 1, getY(), -(bullet->getDX()), -(bullet->getDY()), wp.get_speed());
+		break;
+	case static_cast<int>(Pdir::DOWN):
+		bt.emplace_back(getX(), getY() + 1, -(bullet->getDY()), bullet->getDX(), wp.get_speed());
+		break;
+	}
+}
+
+void Player::setDir(int _dir)
+{
+	dir = _dir;
+}
+
+int Player::getDir()
+{
+	return dir;
 }
