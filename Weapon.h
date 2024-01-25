@@ -13,29 +13,34 @@ namespace Wp_slot
 
 class Weapon
 {
-private:
-	const int MAX_BULLET = 100000000;
-	int damage;
-	double speed;
-	int bullet_num = MAX_BULLET;
 public:
 	Weapon();
-	double get_speed();
-	void Reload();
-public:
-	vector <Bullet> bt;
+	virtual double get_speed() = 0;
+	virtual void Shot() = 0;
 };
 
 
-//class Pistol : public Weapon
-//{
-//private:
-//	  vector <Bullet> bt;
-//	  const int MAX_BULLET = 100000000;
-//	  int damage;
-//	  int bullet_num = MAX_BULLET;
-//public:
-//	  Pistol();
-//	  void Reload();
-//};
+class Pistol : public Weapon
+{
+private:
+	  int damage;
+	  double speed;
+public:
+	  vector <Bullet> bt;
+	  Pistol();
+	  double get_speed() override;
+	  void Shot() override;
+};
+
+class Shotgun : public Weapon
+{
+private:
+	int damage;
+	double speed;
+public:
+	vector <Bullet> bt;
+	Shotgun();
+	double get_speed() override;
+	void Shot() override;
+};
 

@@ -2,36 +2,54 @@
 
 Weapon::Weapon()
 {
-	//bt.emplace_back(0, 0, 1, 0, 0.3);	// 피스톨
-	//damage = 5;						// 피스톨
-	//speed = 0.3;						// 피스톨
+}
 
+double Weapon::get_speed()
+{
+	return 0.0;
+}
+
+void Weapon::Shot()
+{
+
+}
+
+
+
+Pistol::Pistol()
+{
+	damage = 5;						// 피스톨
+	speed = 0.3;						// 피스톨
+	bt.emplace_back(0, 0, 1, 0, speed);	// 피스톨
+}
+
+double Pistol::get_speed()
+{
+	return this->speed;
+}
+
+void Pistol::Shot()
+{
+	bt.emplace_back(0, 0, 1, 0, 0.3);	// 피스톨
+}
+
+Shotgun::Shotgun()
+{
 	damage = 4;							   //샷건 
 	speed = 0.4;						   //샷건 
 	bt.emplace_back(0, 0, 1, 0, speed);	   //샷건 
 	bt.emplace_back(0, 0, 1, 1, speed);	   //샷건 
 	bt.emplace_back(0, 0, 1, -1, speed);   //샷건 
-
-	// 추후 무기 종류를 늘려감에 따라 상속으로 뺄 예정
 }
 
-double Weapon::get_speed()
+double Shotgun::get_speed()
 {
-	return speed;
+	return this->speed;
 }
 
-void Weapon::Reload()
+void Shotgun::Shot()
 {
-	bullet_num = MAX_BULLET;
+	bt.emplace_back(0, 0, 1, 0, speed);	   //샷건 
+	bt.emplace_back(0, 0, 1, 1, speed);	   //샷건 
+	bt.emplace_back(0, 0, 1, -1, speed);   //샷건 
 }
-
-//Pistol::Pistol()
-//{
-//	  bt.emplace_back(0, 0, 1, 0);
-//	  int damage = 5;
-//}
-//
-//void Pistol::Reload()
-//{
-//	  bullet_num = MAX_BULLET;
-//}

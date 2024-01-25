@@ -25,7 +25,7 @@ private:
 	double count = 0;
 	Timer Cnt;
 	vector<Bullet> bt;
-	Weapon wp;
+	Pistol wp;
 	int wp_slot = Wp_slot::FIR;
 public:
 	int getX();
