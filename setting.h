@@ -14,6 +14,7 @@ const int RIGHT = 77;
 const int ESC = 27;
 const int ENTER = 13;
 const int SPACE = 32;
+const int TAP = 9;
 
 
 using namespace std;

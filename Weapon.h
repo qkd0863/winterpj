@@ -15,32 +15,38 @@ class Weapon
 {
 public:
 	Weapon();
-	virtual double get_speed() = 0;
-	virtual void Shot() = 0;
-};
-
-
-class Pistol : public Weapon
-{
-private:
-	  int damage;
-	  double speed;
-public:
-	  vector <Bullet> bt;
-	  Pistol();
-	  double get_speed() override;
-	  void Shot() override;
-};
-
-class Shotgun : public Weapon
-{
-private:
-	int damage;
-	double speed;
-public:
+	string Wname;
 	vector <Bullet> bt;
-	Shotgun();
-	double get_speed() override;
-	void Shot() override;
+	virtual double get_speed() = 0;
+	virtual void Shot(int _x, int _y, int _dir) = 0;
+	enum class Pdir
+	{
+		RIGHT = 0,
+		LEFT = 180,
+		UP = 90,
+		DOWN = 270
+	};
+	virtual void DrawBullets() {
+		for (auto& bullet : this->bt) {
+			bullet.Draw();
+		}
+	}
+	virtual void UpdateBullets()
+	{
+		for (auto it = bt.begin(); it != bt.end();)
+		{
+			it->Update();
+			if (it->getX() <= 0 || it->getX() >= Map_x || it->getY() <= 0 || it->getY() >= Map_y)
+			{
+				gotoxy(it->getX() * 2, it->getY());
+				cout << " ";
+				it = bt.erase(it);
+			}
+			else
+			{
+				++it;
+			}
+		}
+	}
 };
 

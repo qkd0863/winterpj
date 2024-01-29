@@ -2,6 +2,11 @@
 #include "Object.h"
 #include "Timer.h"
 #include "Weapon.h"
+#include "Pistol.h"
+#include "Cclass.h"
+#include "Gunner.h"
+#include "Knight.h"
+#include "Magician.h"
 #include <vector>
 
 using namespace std;
@@ -15,19 +20,17 @@ enum class Pdir
 };
 
 class Player :public Object
-{
-
-	
+{	
 private:
-	int x = 5;int y = 5;
-	int atkx = 0, atky = 0;
-	int dir = 0;
-	double count = 0;
+	int x;int y;
+	//int atkx = 0, atky = 0;
+	int dir;
+	double count;
 	Timer Cnt;
-	vector<Bullet> bt;
-	Pistol wp;
-	int wp_slot = Wp_slot::FIR;
+	string Cname;
+	Cclass* pclass;
 public:
+	Player();
 	int getX();
 	int getY();
 	int getDir(); // 방향 리턴
@@ -40,5 +43,4 @@ public:
 	virtual void Draw();
 	virtual void Update();
 	void KeyEvent(int input);
-	void Change_BT_Dir(int _dir, Bullet* bullet); // 플레이어 방향에 따른 총알 방향 설정
 };
