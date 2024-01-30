@@ -3,6 +3,18 @@
 
 
 
+Player::Player()
+{
+	x = 5; y = 5;
+	dir = 0;
+	count = 0;
+	Cname = "Gunner";
+	pclass = new Gunner();
+	if (pclass == nullptr) {
+		cout << "¿À·ù";
+	}
+}
+
 int Player::getX()
 {
 	return x;
@@ -27,14 +39,7 @@ void Player::action()
 
 void Player::attack()
 {
-	gotoxy((x + 1) * 2, y);
-	cout << "X";
-	gotoxy((x - 1) * 2, y);
-	cout << "X";
-	gotoxy(x * 2, (y + 1));
-	cout << "X";
-	gotoxy(x * 2, (y - 1));
-	cout << "X";
+	this->pclass->attack(x, y, dir);
 }
 
 void Player::DrawSpace(int a, int b)
@@ -56,6 +61,8 @@ void Player::Draw()
 {
 	gotoxy(x * 2, y);
 	cout << "P";
+
+	this->pclass->Draw_BT();
 }
 
 void Player::Update()
@@ -74,8 +81,7 @@ void Player::Update()
 		this->KeyEvent(c);
 	}
 
-	if (count <= 0)
-		this->DrawSpace(atkx, atky);
+	this->pclass->Update_BT();
 }
 
 void Player::KeyEvent(int input)
@@ -93,6 +99,7 @@ void Player::KeyEvent(int input)
 		gotoxy(x * 2, y);
 		cout << " ";
 		x--;
+		dir = static_cast<int>(Pdir::LEFT);
 		break;
 	case RIGHT:
 		if (x >= Map_x - 1)
@@ -100,6 +107,7 @@ void Player::KeyEvent(int input)
 		gotoxy(x * 2, y);
 		cout << " ";
 		x++;
+		dir = static_cast<int>(Pdir::RIGHT);
 		break;
 	case UP:
 		if (y <= 1)
@@ -107,6 +115,7 @@ void Player::KeyEvent(int input)
 		gotoxy(x * 2, y);
 		cout << " ";
 		y--;
+		dir = static_cast<int>(Pdir::UP);
 		break;
 	case DOWN:
 		if (y >= Map_y - 1)
@@ -114,22 +123,37 @@ void Player::KeyEvent(int input)
 		gotoxy(x * 2, y);
 		cout << " ";
 		y++;
+		dir = static_cast<int>(Pdir::DOWN);
 		break;
 	case ESC:
 		_getch();
 		//exit(0);
 		break;
 	case SPACE:
-		atkx = x;atky = y;
-		count = 1;
+		//atkx = x;atky = y;
+		//count = 1;
 		this->attack();
 		break;
 	case ENTER:
 		this->action();
 		break;
+	case TAP:
+		if (this->Cname == "Gunner") {
+			this->pclass->setWeapon();
+		}
+		break;
 	default:
 		break;
 	}
 	
+}
 
+void Player::setDir(int _dir)
+{
+	dir = _dir;
+}
+
+int Player::getDir()
+{
+	return dir;
 }
