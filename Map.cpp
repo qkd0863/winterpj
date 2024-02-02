@@ -1,22 +1,10 @@
 #include "Map.h"
 #include "setting.h"
 
+
 Map::Map()
 {
-	for (int i = 0;i < sizeof(O) / sizeof(O[0]);i++)
-	{
-		O[i] = nullptr;
-	}
-
-	for (int i = 0;i < Map_y;i++)
-	{
-		for (int j = 0;j < Map_x;j++)
-		{
-			map[j][i] = '+';
-		}
-	}
-	divideDungeon(2, 0, 0, Map_x, Map_y);
-	draw = true;
+	
 }	
 
 void Map::AddObject(Player* _P)
@@ -48,12 +36,13 @@ void Map::Draw()
 {
 	if (draw)
 	{
-		for (int i = 0;i < Map_x;i++)
+		for (int i = 0;i < SIZE_ARR_Y;i++)
 		{
-			for (int j = 0;j < Map_y;j++)
+			for (int j = 0;j < SIZE_ARR_X;j++)
 			{
 				gotoxy(j * 2, i);
-				cout << map[j][i];
+			
+				
 			}
 		}
 	}
@@ -140,3 +129,4 @@ Dungeonlocation Map::divideDungeon(int depth, int r1, int c1, int r2, int c2)
 
 	return location;
 }
+

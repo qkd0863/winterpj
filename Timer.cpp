@@ -9,9 +9,9 @@ Timer::Timer()
 
 void Timer::Draw()
 {
-	gotoxy(0, 55);
+	gotoxy(0, 60);
 	cout << "                                                                         "; 
-	gotoxy(0, 55);
+	gotoxy(0, 60);
 	cout << "deltaTime:" << deltaTime << "\t";
 	cout << "Fps:" << 1/deltaTime << "\t";
 	cout << "Time:" << int(showTime) << endl;
