@@ -84,6 +84,9 @@
     <ClCompile Include="TreeNode.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Bomb.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameLoop.h">
@@ -138,6 +141,9 @@
       <Filter>헤더 파일\Class</Filter>
     </ClInclude>
     <ClInclude Include="TreeNode.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Bomb.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

@@ -55,8 +55,10 @@ int main()
 	G.AddObject(&MS);
 	G.AddObject(&P);
 
-	M.AddObject(&P);
-	M.AddObject(&MS);
+	Bomb* B = new Bomb;
+
+	G.AddObject(B);
+
 
 	system("mode con:cols=200 lines=80");
 
@@ -80,6 +82,16 @@ int main()
 	{
 		G.Draw();
 		G.Update();
+		static int cnt = 0;
+		cnt++;
+		if (cnt == 100 )
+		{
+			cnt = 0;
+			Bomb* B2 = new Bomb;
+
+			G.AddObject(B2);
+		}
+		
 	}
 
 }
@@ -142,6 +154,7 @@ void MakeTree(TreeNode* treeNode)
 				arr[i][j] = 1;
 			}
 		}
+		treeNode->SetSolo(true);
 		treeNode->SetRoomInfo(Matrix(treeNode->GetInfo().x + a,
 			treeNode->GetInfo().y + c,
 			treeNode->GetInfo().width - b,

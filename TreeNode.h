@@ -8,7 +8,7 @@ struct Matrix
 	{
 		x = _x, y = _y, width = _width, height = _height;
 	}
-	Matrix() { x = -1, y = -1, width = -1, height - 1; }
+	Matrix() { x = -1, y = -1, width = -1, height - 1;}
 	~Matrix() { }
 };
 
@@ -28,6 +28,7 @@ private:
 	Matrix roominfo;
 	int direction;
 	bool connect;
+	bool solo;
 
 public:
 	void MakeLeftTree(TreeNode* sub)
@@ -47,8 +48,10 @@ public:
 	void SetParentNode(TreeNode* sub) { parentNode = sub; }
 	void SetDirection(int dir) { direction = dir; }
 	void SetRoomInfo(Matrix sub) { roominfo = sub; }
+	void SetSolo(bool _solo) { solo = _solo; }
 	int GetDirection() { return direction; }
 	bool GetConnect() { return connect; }
+	bool GetSolo() { return solo; }
 	Matrix GetRoomInfo() { return roominfo; }
 	Matrix GetInfo() { return info; }
 	TreeNode* GetParentNode() { return parentNode; }
@@ -60,5 +63,6 @@ public:
 		leftNode = nullptr;
 		rightNode = nullptr;
 		parentNode = nullptr;
+		solo = false;
 	}
 };
