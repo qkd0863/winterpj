@@ -4,6 +4,7 @@ void Bullet::Update()
 {
 	Cnt.Update();
 	speed += Cnt.getDelta();
+	MeleeCnt += Cnt.getDelta();
 	if (speed > wp_speed)
 	{
 		gotoxy(x * 2, y);  // 더블 버퍼링할 땐 삭제
@@ -22,6 +23,7 @@ Bullet::Bullet(int _x, int _y, int _dx, int _dy, double _speed)
 	dy = _dy;
 	wp_speed = _speed;
 	speed = 0;
+	MeleeCnt = 0;
 }
 
 int Bullet::getDX()
@@ -48,6 +50,17 @@ void Bullet::Draw()
 {
 	gotoxy(x * 2, y);
 	cout << "☆";
+}
+
+bool Bullet::getCount()
+{
+	if (MeleeCnt >= 3 * wp_speed) 
+	{
+		return true;
+	}
+	else {
+		return false;
+	}
 }
 
 

@@ -3,6 +3,7 @@
 Cclass::Cclass()
 {
 	weapon = nullptr;
+	isSkill = false;
 }
 
 Cclass::~Cclass()

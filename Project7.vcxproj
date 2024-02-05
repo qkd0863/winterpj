@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Cclass.cpp" />
+    <ClCompile Include="Energyvolt.cpp" />
     <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="Gunner.cpp" />
     <ClCompile Include="Knight.cpp" />
@@ -149,6 +150,7 @@
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Cclass.h" />
+    <ClInclude Include="Energyvolt.h" />
     <ClInclude Include="GameLoop.h" />
     <ClInclude Include="Gunner.h" />
     <ClInclude Include="Knight.h" />

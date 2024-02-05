@@ -9,25 +9,18 @@ public:
     ~Cclass();
     Weapon* weapon;
     string wname;
+    bool isSkill;
     virtual void setWeapon() {
     };
     virtual void attack(int _x, int _y, int _dir) {
         weapon->Shot(_x, _y, _dir);
         cout << "공격합니다!";
     }
-    virtual void Draw_BT()
-    {
-        if (weapon != nullptr) {
-            weapon->DrawBullets();
-        }
-        else
-        {
-            weapon = new Shotgun();
-        }
-    }
+    virtual void Draw_BT() {};
     virtual void Update_BT()
     {
         weapon->UpdateBullets();
     }
+    virtual void Skill(int _x, int _y, int _dir) = 0;
 };
 

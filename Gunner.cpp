@@ -27,7 +27,23 @@ void Gunner::setWeapon()
 	}
 }
 
+void Gunner::Draw_BT()
+{
+	if (weapon != nullptr) {
+		weapon->DrawBullets();
+	}
+	else
+	{
+		weapon = new Shotgun(); // 
+	}
+}
+
 void Gunner::attack(int _x, int _y, int _dir)
 {
 	weapon->Shot(_x, _y, _dir);
+}
+
+void Gunner::Skill(int _x, int _y, int _dir)
+{
+	this->setWeapon();
 }

@@ -8,8 +8,8 @@ Player::Player()
 	x = 5; y = 5;
 	dir = 0;
 	count = 0;
-	Cname = "Gunner";
-	pclass = new Gunner();
+	Cname = "Knight";
+	pclass = new Knight();
 	if (pclass == nullptr) {
 		cout << "¿À·ù";
 	}
@@ -89,62 +89,98 @@ void Player::KeyEvent(int input)
 	gotoxy(0, 22);
 	static int a = 0;
 
-
-	
-	switch (input)
+	if (this->pclass->isSkill)
 	{
-	case LEFT:
-		if (x <= 1)
+		switch (input)
+		{
+		case LEFT:
+			dir = static_cast<int>(Pdir::LEFT);
 			break;
-		gotoxy(x * 2, y);
-		cout << " ";
-		x--;
-		dir = static_cast<int>(Pdir::LEFT);
-		break;
-	case RIGHT:
-		if (x >= Map_x - 1)
+		case RIGHT:
+			dir = static_cast<int>(Pdir::RIGHT);
 			break;
-		gotoxy(x * 2, y);
-		cout << " ";
-		x++;
-		dir = static_cast<int>(Pdir::RIGHT);
-		break;
-	case UP:
-		if (y <= 1)
+		case UP:
+			dir = static_cast<int>(Pdir::UP);
 			break;
-		gotoxy(x * 2, y);
-		cout << " ";
-		y--;
-		dir = static_cast<int>(Pdir::UP);
-		break;
-	case DOWN:
-		if (y >= Map_y - 1)
+		case DOWN:
+			dir = static_cast<int>(Pdir::DOWN);
 			break;
-		gotoxy(x * 2, y);
-		cout << " ";
-		y++;
-		dir = static_cast<int>(Pdir::DOWN);
-		break;
-	case ESC:
-		_getch();
-		//exit(0);
-		break;
-	case SPACE:
-		//atkx = x;atky = y;
-		//count = 1;
-		this->attack();
-		break;
-	case ENTER:
-		this->action();
-		break;
-	case TAP:
-		if (this->Cname == "Gunner") {
-			this->pclass->setWeapon();
+		case ESC:
+			_getch();
+			//exit(0);
+			break;
+		case SPACE:
+			//atkx = x;atky = y;
+			//count = 1;
+			this->attack();
+			break;
+		case ENTER:
+			this->action();
+			break;
+		case TAP:
+			this->pclass->Skill(x, y, dir);
+			break;
+		default:
+			break;
 		}
-		break;
-	default:
-		break;
 	}
+	else
+	{
+		switch (input)
+		{
+		case LEFT:
+			if (x <= 1)
+				break;
+			gotoxy(x * 2, y);
+			cout << " ";
+			x--;
+			dir = static_cast<int>(Pdir::LEFT);
+			break;
+		case RIGHT:
+			if (x >= Map_x - 1)
+				break;
+			gotoxy(x * 2, y);
+			cout << " ";
+			x++;
+			dir = static_cast<int>(Pdir::RIGHT);
+			break;
+		case UP:
+			if (y <= 1)
+				break;
+			gotoxy(x * 2, y);
+			cout << " ";
+			y--;
+			dir = static_cast<int>(Pdir::UP);
+			break;
+		case DOWN:
+			if (y >= Map_y - 1)
+				break;
+			gotoxy(x * 2, y);
+			cout << " ";
+			y++;
+			dir = static_cast<int>(Pdir::DOWN);
+			break;
+		case ESC:
+			_getch();
+			//exit(0);
+			break;
+		case SPACE:
+			//atkx = x;atky = y;
+			//count = 1;
+			this->attack();
+			break;
+		case ENTER:
+			this->action();
+			break;
+		case TAP:
+			this->pclass->Skill(x, y, dir);
+			break;
+		default:
+			break;
+		}
+	}
+	
+	
 	
 }
 

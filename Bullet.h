@@ -10,6 +10,7 @@ private:
 	int x; int y;
 	int dx; int dy;
 	double speed;
+	double MeleeCnt;
 	double wp_speed;
 	Timer Cnt;
 public:
@@ -20,5 +21,6 @@ public:
 	int getY();
 	void Update();
 	void Draw();
+	bool getCount();
 };
 

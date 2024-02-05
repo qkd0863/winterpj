@@ -9,7 +9,7 @@
 class GameLoop
 {
 private:
-	Object* O[10];
+	Object* O[50];
 public:
 	GameLoop();
 	void AddObject(Player *_P);
