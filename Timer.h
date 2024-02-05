@@ -15,5 +15,6 @@ public:
 	double getDelta();
 	virtual void Draw();
 	virtual void Update();
+	double getShowtime() { return showTime; };
 };
 

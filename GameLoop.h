@@ -4,6 +4,7 @@
 #include "Map.h"
 #include "Object.h"
 #include "Timer.h"
+#include "Bomb.h"
 
 
 class GameLoop
@@ -16,6 +17,8 @@ public:
 	void AddObject(Map *_M);
 	void AddObject(Monster *_M);
 	void AddObject(Timer *_T);
+	void AddObject(Bomb*_I);
+	void DeleteObject(Bomb* _I);
 	void Draw();
 	void Update();
 };

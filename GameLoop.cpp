@@ -61,6 +61,30 @@ void GameLoop::AddObject(Timer* _T)
 	}
 }
 
+void GameLoop::AddObject(Bomb* _I)
+{
+	for (int i = 0;i < sizeof(O) / sizeof(O[0]);i++)
+	{
+		if (O[i] == nullptr)
+		{
+			O[i] = _I;
+			break;
+		}
+	}
+}
+
+void GameLoop::DeleteObject(Bomb* _I)
+{
+	for (int i = 0;i < sizeof(O) / sizeof(O[0]);i++)
+	{
+		if (O[i] == _I)
+		{
+			O[i] = nullptr;
+			break;
+		}
+	}
+}
+
 void GameLoop::Draw()
 {
 	for (int i = 0;i < sizeof(O) / sizeof(O[0]);i++)
@@ -81,5 +105,16 @@ void GameLoop::Update()
 			O[i]->Update();
 		else
 			break;
+	}
+
+	for (int i = 0;i < sizeof(O) / sizeof(O[0]);i++)
+	{
+		if (O[i] != nullptr)
+			if (O[i]->getDel())
+			{
+				delete[] O[i];
+				O[i] = nullptr;
+			}
+				
 	}
 }
