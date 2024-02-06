@@ -10,8 +10,8 @@
 #include <time.h>
 #include "TreeNode.h"
 
-const int Map_x = 40;
-const int Map_y = 40;
+const int Map_x = 60;
+const int Map_y = 60;
 
 const int UP = 72;
 const int DOWN = 80;

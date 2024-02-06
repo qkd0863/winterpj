@@ -4,7 +4,7 @@
 
 Map::Map()
 {
-	
+	objectType = MAP;
 }	
 
 void Map::AddObject(Player* _P)
@@ -130,3 +130,6 @@ Dungeonlocation Map::divideDungeon(int depth, int r1, int c1, int r2, int c2)
 	return location;
 }
 
+const char(*Map::GetMapArray())[Map_x]{
+	return map;
+}

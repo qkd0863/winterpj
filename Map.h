@@ -25,7 +25,7 @@ public:
 
 	void AddObject(Player* _P);
 	void AddObject(Monster* _M);
-	
+	const char(*GetMapArray())[Map_x];
 };
 
 

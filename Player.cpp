@@ -8,6 +8,7 @@ Player::Player()
 	x = 5; y = 5;
 	dir = 0;
 	count = 0;
+	objectType = PLAYER;
 	Cname = "Knight";
 	pclass = new Knight();
 	if (pclass == nullptr) {
@@ -182,6 +183,17 @@ void Player::KeyEvent(int input)
 	
 	
 	
+}
+
+void Player::RollbackUpdate()
+{
+	x = rx;
+	y = ry;
+}
+
+void Player::MoveToPosition()
+{
+	rx = x, ry = y;
 }
 
 void Player::setDir(int _dir)

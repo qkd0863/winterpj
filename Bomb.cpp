@@ -2,6 +2,13 @@
 #include "setting.h"
 
 
+Bomb::Bomb()
+{
+	x = rand() % 60, y = rand() % 60;
+	Active = false;
+	objectType = BOMB;
+}
+
 void Bomb::Draw()
 {
 	gotoxy(x * 2, y);

@@ -102,7 +102,20 @@ void GameLoop::Update()
 	for (int i = 0;i < sizeof(O) / sizeof(O[0]);i++)
 	{
 		if (O[i] != nullptr)
+		{
 			O[i]->Update();
+			if (O[i]->objectType == PLAYER)
+			{
+				if (arr[O[i]->getY()][O[i]->getX()] == 0)
+				{
+					static_cast<Player*>(O[i])->RollbackUpdate();
+				}
+				else
+				{
+					static_cast<Player*>(O[i])->MoveToPosition();
+				}
+			}
+		}
 		else
 			break;
 	}

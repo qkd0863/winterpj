@@ -11,6 +11,7 @@ Monster::Monster()
 
 	x = rand() % 3 + 2;
 	y = rand() % 3 + 6;
+	objectType = MONSTER;
 }
 
 int Monster::getX()

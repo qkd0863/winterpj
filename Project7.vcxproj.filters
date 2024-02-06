@@ -87,6 +87,9 @@
     <ClCompile Include="Bomb.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Energyvolt.cpp">
+      <Filter>소스 파일\Weapon</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameLoop.h">
@@ -145,6 +148,9 @@
     </ClInclude>
     <ClInclude Include="Bomb.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Energyvolt.h">
+      <Filter>헤더 파일\Weapon</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

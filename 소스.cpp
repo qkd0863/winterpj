@@ -49,7 +49,6 @@ int main()
 	clock_t time = 0;
 
 	G.AddObject(&T);
-
 	
 	G.AddObject(&M);
 	G.AddObject(&MS);
@@ -84,7 +83,7 @@ int main()
 		G.Update();
 		static int cnt = 0;
 		cnt++;
-		if (cnt == 100 )
+		if (cnt == 1000 )
 		{
 			cnt = 0;
 			Bomb* B2 = new Bomb;

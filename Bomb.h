@@ -6,12 +6,12 @@
 class Bomb :public Object
 {
 private:
-	int x = rand()%40, y = rand() % 40;
+	int x, y;
 	Timer Cnt;
-	BOOL Active = false;
+	BOOL Active;
 public:
 	
-
+	Bomb();
 	virtual int getX() { return x; };
 	virtual int getY() { return y; };
 	virtual void Draw();

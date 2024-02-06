@@ -14,7 +14,6 @@ public:
     };
     virtual void attack(int _x, int _y, int _dir) {
         weapon->Shot(_x, _y, _dir);
-        cout << "공격합니다!";
     }
     virtual void Draw_BT() {};
     virtual void Update_BT()

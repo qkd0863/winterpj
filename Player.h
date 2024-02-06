@@ -23,6 +23,7 @@ class Player :public Object
 {	
 private:
 	int x;int y;
+	int rx; int ry;
 	//int atkx = 0, atky = 0;
 	int dir;
 	double count;
@@ -43,4 +44,6 @@ public:
 	virtual void Draw();
 	virtual void Update();
 	void KeyEvent(int input);
+	void RollbackUpdate();
+	void MoveToPosition();
 };

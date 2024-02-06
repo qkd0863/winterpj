@@ -5,6 +5,7 @@ Timer::Timer()
 {
 	QueryPerformanceFrequency(&periodFrequency);
 	QueryPerformanceCounter(&lastTime);
+	objectType = TIMER;
 }
 
 void Timer::Draw()
