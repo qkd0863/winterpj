@@ -39,13 +39,12 @@ void Melee::Shot(int _x, int _y, int _dir)
 	}
 }
 
-//void Melee::DrawBullets()
-//{
-//	for (auto& bullet : this->bt) {
-//		//if (bullet.getX() <= 0 || bullet.getX() >= Map_x || bullet.getY() <= 0 || bullet.getY() >= Map_y)
-//		bullet.Draw();
-//	}
-//}
+void Melee::DrawBullets()
+{
+	for (auto& bullet : this->bt) {
+		bullet.Draw();
+	}
+}
 
 
 void Melee::UpdateBullets()
@@ -56,7 +55,15 @@ void Melee::UpdateBullets()
 		if (it->getCount())
 		{
 			gotoxy(it->getX() * 2, it->getY());
-			cout << " ";
+
+			if (arr[it->getY()][it->getX()] == 0)
+			{
+				cout << "+";
+			}
+			else
+			{
+				cout << " ";
+			}
 			it = bt.erase(it);
 		}
 		else

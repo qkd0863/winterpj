@@ -104,9 +104,24 @@ void GameLoop::Update()
 		if (O[i] != nullptr)
 		{
 			O[i]->Update();
-			if (O[i]->objectType == PLAYER)
+			if (O[i]->objectType == PLAYER) // 플레이어가
 			{
-				if (arr[O[i]->getY()][O[i]->getX()] == 0)
+				for (int j = 0; j < sizeof(O) / sizeof(O[0]); j++) // 몬스터와 충돌
+				{
+					if (i == j)
+					{
+						continue;
+					}
+					if (O[j] != nullptr && O[j]->objectType == MONSTER)
+					{
+						if (O[i]->getX() == O[j]->getX() && O[i]->getY() == O[j]->getY()) 
+						{
+							static_cast<Player*>(O[i])->RollbackUpdate(); // 일단은 롤백 추후 HP 감소로 변경
+						}
+					}
+				}
+
+				if (arr[O[i]->getY()][O[i]->getX()] == 0) // 맵과 충돌
 				{
 					static_cast<Player*>(O[i])->RollbackUpdate();
 				}

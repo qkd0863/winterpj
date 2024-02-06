@@ -37,7 +37,15 @@ void Shield::UpdateBullets()
 		if (it->getCount())
 		{
 			gotoxy(it->getX() * 2, it->getY());
-			cout << " ";
+
+			if (arr[it->getY()][it->getX()] == 0)
+			{
+				cout << "+";
+			}
+			else
+			{
+				cout << " ";
+			}
 			it = bt.erase(it);
 		}
 		else

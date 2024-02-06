@@ -36,7 +36,7 @@ public:
 		for (auto it = bt.begin(); it != bt.end();)
 		{
 			it->Update();
-			if (it->getX() <= 0 || it->getX() >= Map_x || it->getY() <= 0 || it->getY() >= Map_y)
+			if (arr[it->getY()][it->getX()] == 0)
 			{
 				gotoxy(it->getX() * 2, it->getY());
 				cout << " ";
