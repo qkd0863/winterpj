@@ -87,7 +87,7 @@ void GameLoop::Update()
                     }
                 }
 
-                if (arr[obj->getY()][obj->getX()] == 0) // ¸Ê°ú Ãæµ¹
+                if (arr[obj->getY()][obj->getX()] == 0|| arr[obj->getY()][obj->getX()] == 2) // ¸Ê°ú Ãæµ¹
                 {
                     if (playerObj != nullptr)
                     {
