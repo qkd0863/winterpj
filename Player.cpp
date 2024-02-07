@@ -1,6 +1,8 @@
 #include "Player.h"
 #include "setting.h"
+#include "GameLoop.h"
 
+extern GameLoop G;
 
 
 Player::Player()
@@ -179,6 +181,12 @@ void Player::KeyEvent(int input)
 			break;
 		case TAP:
 			this->pclass->Skill(x, y, dir);
+			break;
+		case Q:
+		{
+			Bomb* B = new Bomb(x, y);
+			G.AddObject(B);
+		}
 			break;
 		default:
 			break;

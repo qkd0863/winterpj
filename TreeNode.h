@@ -44,6 +44,7 @@ public:
 		this->rightNode = sub;
 	}
 	void MakeConnection();
+	void MakeHurdle(Matrix romminfo);
 	void SetInfo(Matrix sub) { info = sub; }
 	void SetParentNode(TreeNode* sub) { parentNode = sub; }
 	void SetDirection(int dir) { direction = dir; }

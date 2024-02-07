@@ -14,6 +14,8 @@
 #include "Dragon.h"
 
 int arr[SIZE_ARR_X][SIZE_ARR_Y];
+GameLoop G;
+
 
 void MakeTree(TreeNode* treeNode);
 void MakeConnect(TreeNode* treeNode);
@@ -43,8 +45,7 @@ int main()
 
 
 	
-
-	GameLoop G;
+	
 	Player P;
 	Troll troll;
 	Zombie zombie;
@@ -67,7 +68,6 @@ int main()
 
 	//G.AddObject(B);
 
-
 	system("mode con:cols=200 lines=80");
 
 	for (int i = 0; i < SIZE_ARR_Y; i++)
@@ -75,6 +75,10 @@ int main()
 		for (int j = 0; j < SIZE_ARR_X; j++)
 		{
 			gotoxy(j * 2, i);
+			if (arr[i][j] == 2)
+			{
+				printf("%c", 'X');
+			}
 			if (arr[i][j] == 1)
 			{
 				printf("%c", ' ');
@@ -167,6 +171,7 @@ void MakeTree(TreeNode* treeNode)
 			treeNode->GetInfo().y + c,
 			treeNode->GetInfo().width - b,
 			treeNode->GetInfo().height - d));
+		treeNode->MakeHurdle(treeNode->GetRoomInfo());
 		//if(treeNode->GetParentNode()->GetLeftNode() == treeNode)
 		//	treeNode->MakeConnection();
 		return;

@@ -10,7 +10,7 @@ private:
 	BOOL Active;
 public:
 	
-	Bomb();
+	Bomb(int _x, int _y);
 	virtual int getX() { return x; };
 	virtual int getY() { return y; };
 	virtual void Draw();

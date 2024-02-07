@@ -2,9 +2,9 @@
 #include "setting.h"
 
 
-Bomb::Bomb()
+Bomb::Bomb(int _x,int _y)
 {
-	x = rand() % 60, y = rand() % 60;
+	x = _x, y = _y;
 	Active = false;
 	objectType = BOMB;
 }
@@ -34,6 +34,14 @@ void Bomb::Explosion()
 		{
 			gotoxy((x + i) * 2, y + j);
 			cout << " ";
+		}
+	}
+	
+	for (int i = -2;i < 3;i++)
+	{
+		for (int j = -2;j < 3;j++)
+		{
+			arr[y + j][x + i] = 1;
 		}
 	}
 }

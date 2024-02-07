@@ -15,11 +15,11 @@ void TreeNode::MakeConnection()
 		{
 			if (arr[initY][i] == 1 || i > 58)
 				break;
-			arr[initY][i] = 2;
+			arr[initY][i] = 1;
 			i++;
 		}
 	}
-	if (direction == HEIGHT)
+	if (direction == HEIGHT)	
 	{
 		int initX = roominfo.x * (num / 100) + roominfo.width * (num / 100);
 		int initY = roominfo.height;
@@ -32,7 +32,7 @@ void TreeNode::MakeConnection()
 		{
 			if (arr[i][initX] == 1 || i > 58)
 				break;
-			arr[i][initX] = 2;
+			arr[i][initX] = 1;
 			i++;
 		}
 	}
@@ -46,4 +46,24 @@ void TreeNode::MakeConnection()
 	{
 		parentNode->MakeConnection();
 	}
+}
+
+void TreeNode::MakeHurdle(Matrix romminfo)
+{
+	int cnt = 10;
+	for (int i = romminfo.x;i < romminfo.width;i++)
+	{
+		for (int j = romminfo.y;j < romminfo.height;j++)
+		{
+			int n = rand() % 20;
+			if (n % 20 == 0)
+			{
+				arr[j][i] = 2;
+				cnt--;
+			}
+			if (cnt == 0)
+				return;
+		}
+	}
+
 }
