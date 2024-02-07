@@ -22,7 +22,6 @@ enum class Pdir
 class Player :public Object
 {	
 private:
-	int x;int y;
 	int rx; int ry;
 	//int atkx = 0, atky = 0;
 	int dir;
@@ -46,4 +45,7 @@ public:
 	void KeyEvent(int input);
 	void RollbackUpdate();
 	void MoveToPosition();
+	Cclass* getPclass() const {
+		return pclass;
+	}
 };

@@ -13,12 +13,19 @@ namespace Wp_slot
 
 class Weapon
 {
+protected:
+	int damage;
+	double speed;
 public:
 	Weapon();
 	string Wname;
 	vector <Bullet> bt;
 	virtual double get_speed() = 0;
 	virtual void Shot(int _x, int _y, int _dir) = 0;
+	virtual int getDamage()
+	{
+		return damage;
+	}
 	enum class Pdir
 	{
 		RIGHT = 0,
@@ -48,5 +55,6 @@ public:
 			}
 		}
 	}
+
 };
 

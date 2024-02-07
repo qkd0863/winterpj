@@ -17,3 +17,13 @@ int Object::getY()
 {
 	return y;
 }
+
+int Object::getHP()
+{
+	return hp;
+}
+
+void Object::calculateDamage(int damage)
+{
+	hp -= damage;
+}

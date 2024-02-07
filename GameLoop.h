@@ -10,7 +10,8 @@
 class GameLoop
 {
 private:
-	Object* O[50];
+	//Object* O[100];
+	vector<Object*> O;
 public:
 	GameLoop();
 	void AddObject(Player *_P);

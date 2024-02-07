@@ -6,14 +6,16 @@ enum CobjectType {
 	MONSTER,
 	MAP,
 	BOMB,
-	TIMER
+	TIMER,
+	BULLET
 };
 
 class Object
 {
 protected:
-private:
 	int x, y;
+	int hp;
+private:
 	BOOL del = false;
 public:
 	CobjectType objectType;
@@ -21,6 +23,8 @@ public:
 	virtual void Update();
 	virtual int getX();
 	virtual int getY();
+	virtual int getHP();
+	virtual void calculateDamage(int damage);
 	void setDel(BOOL _d) { del = _d; };
 	BOOL getDel() { return del; };
 

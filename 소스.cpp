@@ -16,6 +16,7 @@ void MakeConnect(TreeNode* treeNode);
 
 int main()
 {
+	srand((unsigned int)time(NULL));
 	CONSOLE_CURSOR_INFO cursorInfo = { 0, };
 	cursorInfo.dwSize = 1;
 	cursorInfo.bVisible = FALSE;
@@ -41,7 +42,9 @@ int main()
 
 	GameLoop G;
 	Player P;
-	Monster MS;
+	Monster MS1;
+	Monster MS2;
+	Monster MS3;
 	Map M;
 	Timer T;
 
@@ -51,12 +54,14 @@ int main()
 	G.AddObject(&T);
 	
 	G.AddObject(&M);
-	G.AddObject(&MS);
+	G.AddObject(&MS1);
+	G.AddObject(&MS2);
+	G.AddObject(&MS3);
 	G.AddObject(&P);
 
-	Bomb* B = new Bomb;
+	//Bomb* B = new Bomb;
 
-	G.AddObject(B);
+	//G.AddObject(B);
 
 
 	system("mode con:cols=200 lines=80");
@@ -81,15 +86,15 @@ int main()
 	{
 		G.Draw();
 		G.Update();
-		static int cnt = 0;
-		cnt++;
-		if (cnt == 1000 )
-		{
-			cnt = 0;
-			Bomb* B2 = new Bomb;
-
-			G.AddObject(B2);
-		}
+		//static int cnt = 0;
+		//cnt++;
+		//if (cnt == 10000 )
+		//{
+		//	cnt = 0;
+		//	Bomb* B2 = new Bomb;
+		//
+		//	G.AddObject(B2);
+		//}
 		
 	}
 

@@ -6,7 +6,6 @@
 class Bomb :public Object
 {
 private:
-	int x, y;
 	Timer Cnt;
 	BOOL Active;
 public:

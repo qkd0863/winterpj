@@ -3,8 +3,6 @@
 class Energyvolt :public Weapon
 {
 private:
-	int damage;
-	double speed;
 public:
 	Energyvolt();
 	double get_speed() override;

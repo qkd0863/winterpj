@@ -4,8 +4,6 @@
 class Melee : public Weapon // 근접 공격
 {
 private:
-	int damage;
-	double speed;
 	bool isAttacking;
 public:
 	Melee();

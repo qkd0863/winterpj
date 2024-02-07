@@ -7,10 +7,17 @@
 
 Monster::Monster()
 {
-	srand((unsigned int)time(NULL));
 
-	x = rand() % 3 + 2;
-	y = rand() % 3 + 6;
+	while (1)
+	{
+		x = rand() % Map_x;
+		y = rand() % Map_y;
+		if (arr[y][x] == 1)
+		{
+			break;
+		}
+	}
+	hp = 10;
 	objectType = MONSTER;
 }
 
@@ -33,16 +40,22 @@ void Monster::setY(int _y)
 
 void Monster::DrawSpace()
 {
-	gotoxy(x * 2, y);
-	cout << " ";
+	if (hp > 0) 
+	{
+		gotoxy(x * 2, y);
+		cout << " ";
+	}
 }
-
 
 
 void Monster::Draw()
 {
-	gotoxy(x * 2, y);
-	cout << "M";
+	if (hp > 0)
+	{
+		gotoxy(x * 2, y);
+		cout << "M";
+	}
+	
 }
 
 void Monster::Update()

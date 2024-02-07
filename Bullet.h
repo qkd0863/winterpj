@@ -7,7 +7,6 @@
 class Bullet : public Object
 {
 private:
-	int x; int y;
 	int dx; int dy;
 	double speed;
 	double MeleeCnt;

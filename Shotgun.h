@@ -4,8 +4,6 @@
 class Shotgun : public Weapon
 {
 private:
-	int damage;
-	double speed;
 public:
 	Shotgun();
 	double get_speed() override;

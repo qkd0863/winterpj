@@ -5,9 +5,7 @@
 class Monster :public Object
 {
 protected:
-	int x = 7; int y = 9;
 	double turn = 0;
-	int hp;
 	Timer Cnt;
 public:
 	Monster();

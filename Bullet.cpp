@@ -22,6 +22,7 @@ Bullet::Bullet(int _x, int _y, int _dx, int _dy, double _speed)
 	wp_speed = _speed;
 	speed = 0;
 	MeleeCnt = 0;
+	objectType = BULLET;
 }
 
 int Bullet::getDX()

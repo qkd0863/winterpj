@@ -51,7 +51,6 @@ void Melee::UpdateBullets()
 {
 	for (auto it = bt.begin(); it != bt.end();)
 	{
-		it->Update();
 		if (it->getCount())
 		{
 			gotoxy(it->getX() * 2, it->getY());

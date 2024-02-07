@@ -4,8 +4,6 @@
 class Shield : public Weapon // ½¯µå
 {
 private:
-	int damage;
-	double speed;
 public:
 	Shield();
 	double get_speed() override;
