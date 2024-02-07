@@ -14,9 +14,10 @@ public:
 	int getY();
 	void setX(int _x);
 	void setY(int _y);
-	void DrawSpace();
+	virtual void DrawSpace();
 	virtual void Draw();
 	virtual void Update();
 	virtual int getDamage();
+	virtual void Attack();
 };
 

@@ -99,3 +99,8 @@ int Monster::getDamage()
 {
 	return damage;
 }
+
+void Monster::Attack()
+{
+	
+}
