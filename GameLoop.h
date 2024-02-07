@@ -10,7 +10,6 @@
 class GameLoop
 {
 private:
-	//Object* O[100];
 	vector<Object*> O;
 public:
 	GameLoop();
