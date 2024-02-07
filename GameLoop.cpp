@@ -121,7 +121,7 @@ void GameLoop::Update()
 					}
 				}
 
-				if (arr[O[i]->getY()][O[i]->getX()] == 0) // 맵과 충돌
+				if (arr[O[i]->getY()][O[i]->getX()] == 0 || arr[O[i]->getY()][O[i]->getX()] == 2) // 맵과 충돌, 장애물과 충돌(임시로 못가게 만듦)
 				{
 					static_cast<Player*>(O[i])->RollbackUpdate();
 				}

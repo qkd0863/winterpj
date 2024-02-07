@@ -21,12 +21,14 @@ const int ESC = 27;
 const int ENTER = 13;
 const int SPACE = 32;
 const int TAP = 9;
+const int Q = 113;
 
 
 
 const int SIZE_ARR_X = 60;
 const int SIZE_ARR_Y = 60;
 extern int arr[SIZE_ARR_X][SIZE_ARR_Y];
+
 
 using namespace std;
 

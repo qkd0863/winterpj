@@ -10,6 +10,8 @@
 #include "Timer.h"
 
 int arr[SIZE_ARR_X][SIZE_ARR_Y];
+GameLoop G;
+
 
 void MakeTree(TreeNode* treeNode);
 void MakeConnect(TreeNode* treeNode);
@@ -38,8 +40,7 @@ int main()
 
 
 	
-
-	GameLoop G;
+	
 	Player P;
 	Monster MS;
 	Map M;
@@ -53,10 +54,6 @@ int main()
 	G.AddObject(&M);
 	G.AddObject(&MS);
 	G.AddObject(&P);
-
-	Bomb* B = new Bomb;
-
-	G.AddObject(B);
 
 
 	system("mode con:cols=200 lines=80");
@@ -85,16 +82,6 @@ int main()
 	{
 		G.Draw();
 		G.Update();
-		static int cnt = 0;
-		cnt++;
-		if (cnt == 1000 )
-		{
-			cnt = 0;
-			Bomb* B2 = new Bomb;
-
-			G.AddObject(B2);
-		}
-		
 	}
 
 }
