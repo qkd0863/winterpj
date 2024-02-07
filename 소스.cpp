@@ -66,6 +66,10 @@ int main()
 		for (int j = 0; j < SIZE_ARR_X; j++)
 		{
 			gotoxy(j * 2, i);
+			if (arr[i][j] == 2)
+			{
+				printf("%c", 'X');
+			}
 			if (arr[i][j] == 1)
 			{
 				printf("%c", ' ');
@@ -158,6 +162,7 @@ void MakeTree(TreeNode* treeNode)
 			treeNode->GetInfo().y + c,
 			treeNode->GetInfo().width - b,
 			treeNode->GetInfo().height - d));
+		treeNode->MakeHurdle(treeNode->GetRoomInfo());
 		//if(treeNode->GetParentNode()->GetLeftNode() == treeNode)
 		//	treeNode->MakeConnection();
 		return;

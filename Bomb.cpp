@@ -32,8 +32,18 @@ void Bomb::Explosion()
 	{
 		for (int j = -2;j < 3;j++)
 		{
+			
 			gotoxy((x + i) * 2, y + j);
 			cout << " ";
+		}
+	}
+	
+	for (int i = -2;i < 3;i++)
+	{
+		for (int j = -2;j < 3;j++)
+		{
+			
+			arr[y + j][x + i] = 1;
 		}
 	}
 }
