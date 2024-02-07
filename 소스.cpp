@@ -8,6 +8,10 @@
 #include "Map.h"
 #include "GameLoop.h"
 #include "Timer.h"
+#include "Hydra.h"
+#include "Zombie.h"
+#include "Troll.h"
+#include "Dragon.h"
 
 int arr[SIZE_ARR_X][SIZE_ARR_Y];
 
@@ -42,9 +46,9 @@ int main()
 
 	GameLoop G;
 	Player P;
-	Monster MS1;
-	Monster MS2;
-	Monster MS3;
+	Troll troll;
+	Zombie zombie;
+	Dragon hydra;
 	Map M;
 	Timer T;
 
@@ -54,9 +58,9 @@ int main()
 	G.AddObject(&T);
 	
 	G.AddObject(&M);
-	G.AddObject(&MS1);
-	G.AddObject(&MS2);
-	G.AddObject(&MS3);
+	G.AddObject(&troll);
+	G.AddObject(&zombie);
+	G.AddObject(&hydra);
 	G.AddObject(&P);
 
 	//Bomb* B = new Bomb;

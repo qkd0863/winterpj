@@ -25,12 +25,15 @@
     <Filter Include="소스 파일\Class">
       <UniqueIdentifier>{05837c69-6a2d-4976-ba64-6a4173eb1887}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Monster">
+      <UniqueIdentifier>{79553de6-7950-4cff-bd27-1364e7b5d53e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Monster">
+      <UniqueIdentifier>{a108a793-3053-4c30-b784-4491bc11402f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Map.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Monster.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Object.cpp">
@@ -90,15 +93,27 @@
     <ClCompile Include="Energyvolt.cpp">
       <Filter>소스 파일\Weapon</Filter>
     </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>소스 파일\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Hydra.cpp">
+      <Filter>소스 파일\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Dragon.cpp">
+      <Filter>소스 파일\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Troll.cpp">
+      <Filter>소스 파일\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Zombie.cpp">
+      <Filter>소스 파일\Monster</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameLoop.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Map.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Monster.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Object.h">
@@ -151,6 +166,21 @@
     </ClInclude>
     <ClInclude Include="Energyvolt.h">
       <Filter>헤더 파일\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Hydra.h">
+      <Filter>헤더 파일\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>헤더 파일\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Dragon.h">
+      <Filter>헤더 파일\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Zombie.h">
+      <Filter>헤더 파일\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Troll.h">
+      <Filter>헤더 파일\Monster</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

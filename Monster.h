@@ -5,6 +5,7 @@
 class Monster :public Object
 {
 protected:
+	int damage;
 	double turn = 0;
 	Timer Cnt;
 public:
@@ -16,5 +17,6 @@ public:
 	void DrawSpace();
 	virtual void Draw();
 	virtual void Update();
+	virtual int getDamage();
 };
 

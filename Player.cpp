@@ -11,6 +11,7 @@ Player::Player()
 	objectType = PLAYER;
 	Cname = "Knight";
 	pclass = new Knight();
+	hp = 30;
 	if (pclass == nullptr) {
 		cout << "¿À·ù";
 	}
@@ -64,6 +65,9 @@ void Player::Draw()
 	cout << "P";
 
 	this->pclass->Draw_BT();
+
+	gotoxy(0, 61);
+	cout << "HP: " << hp;
 }
 
 void Player::Update()

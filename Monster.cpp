@@ -67,37 +67,35 @@ void Monster::Update()
 	{
 		DrawSpace();
 
-		int action = rand() % 4;
-		switch (action)
+		while (1)
 		{
-		case 0:
-			if (x < 9)
+			int action = rand() % 4;
+			switch (action)
 			{
-				x++;		
-			}			
-			break;
-		case 1:
-			if (x > 1)
-			{
-				x--;	
+			case 0:
+				x++;
+				break;
+			case 1:
+				x--;
+				break;
+			case 2:
+				y++;
+				break;
+			case 3:
+				y--;
+				break;
 			}
-			break;
-		case 2:
-			if (y < 9)
+			if (arr[y][x] != 0)
 			{
-				y++;	
-			}		
-			break;
-		case 3:
-			if (y > 1)
-			{
-				y--;		
+				break;
 			}
-			break;
-		default:
-			break;
 		}
 	
-		turn = 0;
+		turn -= 1;
 	}	
+}
+
+int Monster::getDamage()
+{
+	return damage;
 }

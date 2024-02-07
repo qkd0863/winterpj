@@ -75,10 +75,12 @@ void GameLoop::Update()
 
                     if (otherObj != nullptr && otherObj->objectType == MONSTER)
                     {
-                        if (obj->getX() == otherObj->getX() && obj->getY() == otherObj->getY())
+                        Monster* monsterobj = dynamic_cast<Monster*>(otherObj);
+                        if (obj->getX() == monsterobj->getX() && obj->getY() == monsterobj->getY())
                         {
                             if (playerObj != nullptr)
                             {
+                                playerObj->calculateDamage(monsterobj->getDamage());
                                 playerObj->RollbackUpdate();
                             }// 일단은 롤백 추후 HP 감소로 변경
                         }

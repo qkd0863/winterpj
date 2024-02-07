@@ -45,6 +45,7 @@ public:
 	void KeyEvent(int input);
 	void RollbackUpdate();
 	void MoveToPosition();
+	void calculateDamage(int _damage) { hp -= _damage; }
 	Cclass* getPclass() const {
 		return pclass;
 	}
