@@ -10,16 +10,15 @@
 class GameLoop
 {
 private:
-	vector<Object*> O;
+	vector<Object*> Objects;
 public:
 	GameLoop();
-	void AddObject(Player *_P);
-	void AddObject(Map *_M);
-	void AddObject(Monster *_M);
-	void AddObject(Timer *_T);
-	void AddObject(Bomb*_I);
-	void DeleteObject(Bomb* _I);
+	void AddObject(Object* _P);
+	void DeleteObject(Object* _P);
 	void Draw();
 	void Update();
+	void HandlePlayerMapCollision(Player* playerObj, Object* obj);
+	void HandlePlayerMonsterCollision(Object* obj, vector<Object*> object);
+	void MonsterCollision(Object* obj, vector<Object*> object);
 };
 

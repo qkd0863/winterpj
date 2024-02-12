@@ -87,38 +87,42 @@ void Dragon::DrawSpace()
 
 void Dragon::Attack()
 {
-    if (TBreath < 10.0 && IsBreath == false)
+    if (IsBreath == false)
     {
-        if (BreathY < 54)
+        if (TBreath < 10.0)
+        {
+            if (BreathY < 54)
+            {
+                gotoxy(x * 2, y + BreathY);
+                cout << "!                                   !" << endl;
+                BreathY++;
+            }
+        }
+        else
+        {
+            BreathY = 17;
+            IsBreath = true;
+            TBreath = 0;
+        }
+    }
+    else
+    {
+        if (TBreath < 10.0)
         {
             gotoxy(x * 2, y + BreathY);
-            cout << "!                                   !" << endl;
-            BreathY++;          
+            cout << "|||||||||||||||||||||||||||||||||||||" << endl;
+
+            if (BreathY < 54)
+            {
+                BreathY++;
+            }
         }
-    }
-    else if(TBreath >= 10.0 && IsBreath == false)
-    {
-        BreathY = 17;
-        IsBreath = true;
-        TBreath = 0;
-    }
-
-
-    if (TBreath < 10.0 && IsBreath == true)
-    {
-        gotoxy(x * 2, y + BreathY);
-        cout << "|||||||||||||||||||||||||||||||||||||" << endl;
-
-        if (BreathY < 54)
+        else
         {
-            BreathY++;
+            TBreath = 0;
+            IsBreath = false;
+            BreathY = 17;
+            IsAttack = false;
         }
-    }
-    else if(TBreath >= 10.0 && IsBreath == true)
-    {
-        TBreath = 0;
-        IsBreath = false;
-        BreathY = 17;
-        IsAttack = false;
     }
 }

@@ -49,7 +49,8 @@ int main()
 	Player P;
 	Troll troll;
 	Zombie zombie;
-	Dragon hydra;
+	Hydra hydra;
+	//Dragon hydra;
 	Map M;
 	Timer T;
 

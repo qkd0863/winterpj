@@ -3,145 +3,132 @@
 
 GameLoop::GameLoop()
 {
-    // 생성자에서 추가 초기화는 필요 없음
+	// 생성자에서 추가 초기화는 필요 없음
 }
 
-void GameLoop::AddObject(Player* _P)
+void GameLoop::AddObject(Object* _P)
 {
-    O.push_back(_P);
+	Objects.push_back(_P);
 }
 
-void GameLoop::AddObject(Map* _M)
+void GameLoop::DeleteObject(Object* _P)
 {
-    O.push_back(_M);
-}
-
-void GameLoop::AddObject(Monster* _M)
-{
-    O.push_back(_M);
-}
-
-void GameLoop::AddObject(Timer* _T)
-{
-    O.push_back(_T);
-}
-
-void GameLoop::AddObject(Bomb* _I)
-{
-    O.push_back(_I);
-}
-
-void GameLoop::DeleteObject(Bomb* _I)
-{
-    for (auto it = O.begin(); it != O.end(); ++it)
-    {
-        if (*it == _I)
-        {
-            O.erase(it);
-            break;
-        }
-    }
+	for (auto it = Objects.begin(); it != Objects.end(); ++it)
+	{
+		if (*it == _P)
+		{
+			Objects.erase(it);
+			break;
+		}
+	}
 }
 
 void GameLoop::Draw()
 {
-    for (const auto& obj : O)
-    {
-        if (obj != nullptr)
-            obj->Draw();
-        else
-            break;
-    }
+	for (const auto& obj : Objects)
+	{
+		if (obj != nullptr)
+			obj->Draw();
+		else
+			break;
+	}
 }
 
 void GameLoop::Update()
 {
-    for (auto& obj : O)
-    {
-        if (obj != nullptr)
-        {
-            obj->Update();
+	for (auto& obj : Objects)
+	{
+		if (obj == nullptr) { break; }
 
-            if (obj->objectType == PLAYER) // 플레이어가
-            {
-                Player* playerObj = dynamic_cast<Player*>(obj);
+		obj->Update();
 
-                for (auto& otherObj : O) // 몬스터와 충돌
-                {
-                    if (&obj == &otherObj)
-                    {
-                        continue;
-                    }
+		if (obj->objectType == PLAYER) // 플레이어가
+		{
+			Player* playerObj = dynamic_cast<Player*>(obj);
+			HandlePlayerMonsterCollision(obj, Objects);
+			HandlePlayerMapCollision(playerObj, obj);
+		}
+		else if (obj->objectType == MONSTER)
+		{
+			MonsterCollision(obj, Objects);
+		}
 
-                    if (otherObj != nullptr && otherObj->objectType == MONSTER)
-                    {
-                        Monster* monsterobj = dynamic_cast<Monster*>(otherObj);
-                        if (obj->getX() == monsterobj->getX() && obj->getY() == monsterobj->getY())
-                        {
-                            if (playerObj != nullptr)
-                            {
-                                playerObj->calculateDamage(monsterobj->getDamage());
-                                playerObj->RollbackUpdate();
-                            }// 일단은 롤백 추후 HP 감소로 변경
-                        }
-                    }
-                }
+	}
 
-                if (arr[obj->getY()][obj->getX()] == 0|| arr[obj->getY()][obj->getX()] == 2) // 맵과 충돌
-                {
-                    if (playerObj != nullptr)
-                    {
-                        playerObj->RollbackUpdate();
-                    }
-                }
-                else
-                {
-                    if (playerObj != nullptr)
-                    {
-                        playerObj->MoveToPosition();
-                    }
-                }
-            }
-            else if (obj->objectType == MONSTER)
-            {
-                for (auto& otherObj : O)
-                {
-                    if (&obj == &otherObj)
-                    {
-                        continue;
-                    }
-                    if (otherObj != nullptr && otherObj->objectType == PLAYER)
-                    {
-                        Player* playerObj = dynamic_cast<Player*>(otherObj);
-                        if (playerObj != nullptr)
-                        {
-                            Cclass* temp = playerObj->getPclass();
-                            for (auto it = temp->weapon->bt.begin(); it != temp->weapon->bt.end();)
-                            {
-                                if ((obj->getX() == it->getX()) && (obj->getY() == it->getY()))
-                                {
-                                    Monster* monsterObj = dynamic_cast<Monster*>(obj);
-                                    if (monsterObj != nullptr)
-                                    {
-                                        monsterObj->calculateDamage(temp->weapon->getDamage());
-                                        if (monsterObj->getHP() <= 0)
-                                        {
-                                            monsterObj->setDel(true);
-                                        }
-                                    }
-                                }
-                                ++it;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        else
-        {
-            break;
-        }
-    }
+	Objects.erase(std::remove_if(Objects.begin(), Objects.end(), [](Object* obj) { return obj != nullptr && obj->getDel(); }), Objects.end());
+}
 
-    O.erase(std::remove_if(O.begin(), O.end(), [](Object* obj) { return obj != nullptr && obj->getDel(); }), O.end());
+void GameLoop::HandlePlayerMapCollision(Player* playerObj, Object* obj) {
+	if (arr[obj->getY()][obj->getX()] == 0 || arr[obj->getY()][obj->getX()] == 2) // 맵과 충돌
+	{
+		playerObj->RollbackUpdate();
+	}
+	else
+	{
+		playerObj->MoveToPosition();
+	}
+}
+
+void GameLoop::HandlePlayerMonsterCollision(Object* obj, vector<Object*> object) {
+	Player* playerObj = dynamic_cast<Player*>(obj);
+
+	for (auto& otherObj : Objects) // 몬스터와 충돌
+	{
+		if (otherObj == nullptr)
+		{
+			continue;
+		}
+
+		if (&obj == &otherObj)
+		{
+			continue;
+		}
+
+
+		if (otherObj->objectType == MONSTER)
+		{
+			Monster* monsterobj = dynamic_cast<Monster*>(otherObj);
+			if (obj->getX() == monsterobj->getX() && obj->getY() == monsterobj->getY())
+			{
+				playerObj->calculateDamage(monsterobj->getDamage());
+				playerObj->RollbackUpdate(); // 일단은 롤백 추후 HP 감소로 변경
+			}
+		}
+	}
+}
+
+void GameLoop::MonsterCollision(Object* obj, vector<Object*> object)
+{
+	for (auto& otherObj : object)
+	{
+		if (&obj == &otherObj)
+		{
+			continue;
+		}
+
+		if (otherObj == nullptr)
+		{
+			continue;
+		}
+
+		if (otherObj->objectType == PLAYER)
+		{
+			Player* playerObj = dynamic_cast<Player*>(otherObj);
+			if (playerObj == nullptr) { continue; }
+			Cclass* temp = playerObj->getPclass();
+			for (auto it = temp->weapon->bt.begin(); it != temp->weapon->bt.end();)
+			{
+				if ((obj->getX() == it->getX()) && (obj->getY() == it->getY()))
+				{
+					Monster* monsterObj = dynamic_cast<Monster*>(obj);
+					monsterObj->calculateDamage(temp->weapon->getDamage());
+					if (monsterObj->getHP() <= 0)
+					{
+						monsterObj->setDel(true);
+					}
+				}
+				++it;
+			}
+		}
+	}
 }
