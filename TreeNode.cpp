@@ -13,9 +13,9 @@ void TreeNode::MakeConnection()
 		int i = initX;
 		while (1)
 		{
-			if (arr[initY][i] == 1 || i > 58)
+			if (arr[initY][i] >= 3 || i > 58)
 				break;
-			arr[initY][i] = 1;
+			arr[initY][i] = 2;
 			i++;
 		}
 	}
@@ -30,9 +30,9 @@ void TreeNode::MakeConnection()
 		int i = initY;
 		while (1)
 		{
-			if (arr[i][initX] == 1 || i > 58)
+			if (arr[i][initX] >= 3 || i > 58)
 				break;
-			arr[i][initX] = 1;
+			arr[i][initX] = 2;
 			i++;
 		}
 	}
@@ -58,7 +58,7 @@ void TreeNode::MakeHurdle(Matrix romminfo)
 			int n = rand() % 20;
 			if (n % 20 == 0)
 			{
-				arr[j][i] = 2;
+				arr[j][i] = 1;
 				cnt--;
 			}
 			if (cnt == 0)

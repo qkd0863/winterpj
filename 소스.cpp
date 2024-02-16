@@ -14,11 +14,13 @@
 #include "Dragon.h"
 
 int arr[SIZE_ARR_X][SIZE_ARR_Y];
+int roomnum = 2;
 GameLoop G;
 
 
 void MakeTree(TreeNode* treeNode);
 void MakeConnect(TreeNode* treeNode);
+void PrintMap();
 
 int main()
 {
@@ -70,27 +72,8 @@ int main()
 	//G.AddObject(B);
 
 	system("mode con:cols=200 lines=80");
-
-	for (int i = 0; i < SIZE_ARR_Y; i++)
-	{
-		for (int j = 0; j < SIZE_ARR_X; j++)
-		{
-			gotoxy(j * 2, i);
-			if (arr[i][j] == 2)
-			{
-				printf("%c", 'X');
-			}
-			if (arr[i][j] == 1)
-			{
-				printf("%c", ' ');
-			}
-			if (arr[i][j] == 0)
-			{
-				printf("%c", '+');
-			}
-
-		}
-	}
+	PrintMap();
+	
 	while (1)
 	{
 		G.Draw();
@@ -164,9 +147,10 @@ void MakeTree(TreeNode* treeNode)
 		{
 			for (int j = treeNode->GetInfo().x + a; j < treeNode->GetInfo().width - b; j++)
 			{
-				arr[i][j] = 1;
+				arr[i][j] = roomnum;
 			}
 		}
+		roomnum++;
 		treeNode->SetSolo(true);
 		treeNode->SetRoomInfo(Matrix(treeNode->GetInfo().x + a,
 			treeNode->GetInfo().y + c,
@@ -209,5 +193,28 @@ void MakeConnect(TreeNode* treeNode)
 	{
 		MakeConnect(treeNode->GetLeftNode());
 		MakeConnect(treeNode->GetRightNode());
+	}
+}
+void PrintMap()
+{
+	for (int i = 0; i < SIZE_ARR_Y; i++)
+	{
+		for (int j = 0; j < SIZE_ARR_X; j++)
+		{
+			gotoxy(j * 2, i);
+			switch (arr[i][j])
+			{
+			case 0:
+				printf("%c", '+');
+				break;
+			case 1:
+				printf("%c", 'X');
+				break;
+			default:
+				//printf("%d", arr[i][j]);
+				printf("%c", ' ');
+				break;
+			}
+		}
 	}
 }
