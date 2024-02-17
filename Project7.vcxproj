@@ -164,6 +164,7 @@
     <ClInclude Include="Hydra.h" />
     <ClInclude Include="Knight.h" />
     <ClInclude Include="Magician.h" />
+    <ClInclude Include="MakeTree.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Melee.h" />
     <ClInclude Include="Monster.h" />
