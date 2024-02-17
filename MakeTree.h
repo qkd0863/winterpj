@@ -55,13 +55,17 @@ void MakeTree(TreeNode* treeNode)
 				arr[i][j] = roomnum;
 			}
 		}
+		treeNode->SetRoomN(roomnum);
 		roomnum++;
 		treeNode->SetSolo(true);
 		treeNode->SetRoomInfo(Matrix(treeNode->GetInfo().x + a,
 			treeNode->GetInfo().y + c,
 			treeNode->GetInfo().width - b,
 			treeNode->GetInfo().height - d));
-		treeNode->MakeHurdle(treeNode->GetRoomInfo());
+		if (roomnum != 3)	//Ã¹¹øÂ° roomnum==3
+			treeNode->MakeHurdle(treeNode->GetRoomInfo());
+		if (roomnum == 10)
+			treeNode->MakePortal(treeNode->GetRoomInfo());
 		//if(treeNode->GetParentNode()->GetLeftNode() == treeNode)
 		//	treeNode->MakeConnection();
 		return;

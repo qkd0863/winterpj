@@ -107,15 +107,18 @@ void PrintMap()
 			gotoxy(j * 2, i);
 			switch (arr[i][j])
 			{
+			case -1:
+				cout << "¡Þ";
+				break;
 			case 0:
-				printf("%c", '+');
+				cout << '+';			
 				break;
 			case 1:
-				printf("%c", 'X');
+				cout << 'X';
 				break;
 			default:
 				//printf("%d", arr[i][j]);
-				printf("%c", ' ');
+				cout << ' ';
 				break;
 			}
 		}
