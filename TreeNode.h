@@ -45,6 +45,7 @@ public:
 	}
 	void MakeConnection();
 	void MakeHurdle(Matrix romminfo);
+	void MakePortal(Matrix romminfo);
 	void SetInfo(Matrix sub) { info = sub; }
 	void SetParentNode(TreeNode* sub) { parentNode = sub; }
 	void SetDirection(int dir) { direction = dir; }

@@ -95,7 +95,7 @@ void Player::KeyEvent(int input)
 {
 	gotoxy(0, 22);
 	static int a = 0;
-
+	input = _getch();
 	if (this->pclass->isSkill)
 	{
 		switch (input)

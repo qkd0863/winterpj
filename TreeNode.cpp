@@ -67,3 +67,22 @@ void TreeNode::MakeHurdle(Matrix romminfo)
 	}
 
 }
+
+void TreeNode::MakePortal(Matrix romminfo)
+{
+	while (1)
+	{
+		for (int i = romminfo.x;i < romminfo.width;i++)
+		{
+			for (int j = romminfo.y;j < romminfo.height;j++)
+			{
+				int n = rand() % 20;
+				if (n % 20 == 0)
+				{
+					arr[j][i] = -1;
+					return;
+				}
+			}
+		}
+	}
+}
