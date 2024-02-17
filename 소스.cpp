@@ -8,6 +8,7 @@
 #include "Map.h"
 #include "GameLoop.h"
 #include "MakeTree.h"
+#include "MapMgr.h"
 #include "Timer.h"
 #include "Hydra.h"
 #include "Zombie.h"
@@ -55,6 +56,7 @@ int main()
 	//Dragon hydra;
 	Map M;
 	Timer T;
+	MapMgr MGR;
 
 	clock_t starttime = 0, endtime = 0;
 	clock_t time = 0;
@@ -66,6 +68,7 @@ int main()
 	G.AddObject(&zombie);
 	G.AddObject(&hydra);
 	G.AddObject(&P);
+	G.AddObject(&MGR);
 
 	//Bomb* B = new Bomb;
 

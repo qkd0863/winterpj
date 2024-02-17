@@ -138,6 +138,7 @@
     <ClCompile Include="Knight.cpp" />
     <ClCompile Include="Magician.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="MapMgr.cpp" />
     <ClCompile Include="Melee.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Object.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="Magician.h" />
     <ClInclude Include="MakeTree.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="MapMgr.h" />
     <ClInclude Include="Melee.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="Object.h" />

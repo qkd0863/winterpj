@@ -7,7 +7,8 @@ enum CobjectType {
 	MAP,
 	BOMB,
 	TIMER,
-	BULLET
+	BULLET,
+	MAPMGR
 };
 
 class Object
