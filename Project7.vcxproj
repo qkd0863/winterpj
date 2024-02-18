@@ -144,6 +144,7 @@
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Pistol.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Portal.cpp" />
     <ClCompile Include="setting.cpp" />
     <ClCompile Include="Shield.cpp" />
     <ClCompile Include="Shotgun.cpp" />
@@ -173,6 +174,7 @@
     <ClInclude Include="Object.h" />
     <ClInclude Include="Pistol.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Portal.h" />
     <ClInclude Include="setting.h" />
     <ClInclude Include="Shield.h" />
     <ClInclude Include="Shotgun.h" />

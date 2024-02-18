@@ -47,6 +47,7 @@ void GameLoop::Update()
 			Player* playerObj = dynamic_cast<Player*>(obj);
 			HandlePlayerMonsterCollision(obj, Objects);
 			HandlePlayerMapCollision(playerObj, obj);
+			HandlePlayerPortalCollision(playerObj, obj);
 		}
 		else if (obj->objectType == MONSTER)
 		{
@@ -59,7 +60,7 @@ void GameLoop::Update()
 }
 
 void GameLoop::HandlePlayerMapCollision(Player* playerObj, Object* obj) {
-	if (arr[obj->getY()][obj->getX()] == 0 || arr[obj->getY()][obj->getX()] == 2) // ¸Ê°ú Ãæµ¹
+	if (arr[obj->getY()][obj->getX()] == 0 || arr[obj->getY()][obj->getX()] == 1) // ¸Ê°ú Ãæµ¹
 	{
 		playerObj->RollbackUpdate();
 	}
@@ -95,6 +96,16 @@ void GameLoop::HandlePlayerMonsterCollision(Object* obj, vector<Object*> object)
 			}
 		}
 	}
+}
+
+void GameLoop::HandlePlayerPortalCollision(Player* playerObj, Object* obj)
+{
+	if (arr[obj->getY()][obj->getX()] == -1 ) // Æ÷Å»°ú Ãæµ¹
+	{
+
+		playerObj->RollbackUpdate();
+	}
+
 }
 
 void GameLoop::MonsterCollision(Object* obj, vector<Object*> object)

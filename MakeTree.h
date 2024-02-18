@@ -1,8 +1,8 @@
 #include "TreeNode.h"
+#include "Portal.h"
+#include "GameLoop.h"
 
-
-
-void MakeTree(TreeNode* treeNode)
+void MakeTree(TreeNode* treeNode,GameLoop* G)
 {
 	Matrix mat1, mat2;
 
@@ -65,7 +65,12 @@ void MakeTree(TreeNode* treeNode)
 		if (roomnum != 3)	//Ã¹¹øÂ° roomnum==3
 			treeNode->MakeHurdle(treeNode->GetRoomInfo());
 		if (roomnum == 10)
-			treeNode->MakePortal(treeNode->GetRoomInfo());
+		{
+			Matrix M = treeNode->GetRoomInfo();
+			Portal* P = new Portal((M.width + M.x) / 2, (M.height + M.y) / 2);
+			G->AddObject(P);
+		}
+			
 		//if(treeNode->GetParentNode()->GetLeftNode() == treeNode)
 		//	treeNode->MakeConnection();
 		return;
@@ -74,12 +79,12 @@ void MakeTree(TreeNode* treeNode)
 	treeNode->GetLeftNode()->SetInfo(mat1);
 	treeNode->GetLeftNode()->SetParentNode(treeNode);
 	treeNode->GetLeftNode()->SetDirection(direction);
-	MakeTree(treeNode->GetLeftNode());
+	MakeTree(treeNode->GetLeftNode(),G);
 	treeNode->MakeRightTree(new TreeNode);
 	treeNode->GetRightNode()->SetInfo(mat2);
 	treeNode->GetRightNode()->SetParentNode(treeNode);
 	treeNode->GetRightNode()->SetDirection(direction);
-	MakeTree(treeNode->GetRightNode());
+	MakeTree(treeNode->GetRightNode(),G);
 	return;
 }
 void MakeConnect(TreeNode* treeNode)

@@ -38,7 +38,7 @@ int main()
 	memset(arr, 0, sizeof(arr));
 
 
-	MakeTree(treeNode);
+	MakeTree(treeNode,&G);
 	while (1)
 	{
 		MakeConnect(treeNode);
@@ -110,9 +110,6 @@ void PrintMap()
 			gotoxy(j * 2, i);
 			switch (arr[i][j])
 			{
-			case -1:
-				cout << "¡Þ";
-				break;
 			case 0:
 				cout << '+';			
 				break;

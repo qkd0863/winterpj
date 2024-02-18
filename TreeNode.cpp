@@ -1,4 +1,5 @@
 #include "setting.h"
+#include <vector>
 
 void TreeNode::MakeConnection()
 {
@@ -68,6 +69,8 @@ void TreeNode::MakeHurdle(Matrix romminfo)
 
 }
 
+
+
 void TreeNode::MakePortal(Matrix romminfo)
 {
 	while (1)
@@ -80,7 +83,6 @@ void TreeNode::MakePortal(Matrix romminfo)
 				if (n % 20 == 0)
 				{
 					arr[j][i] = -1;
-					return;
 				}
 			}
 		}
