@@ -175,6 +175,7 @@
     <ClInclude Include="Pistol.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Portal.h" />
+    <ClInclude Include="PrintMap.h" />
     <ClInclude Include="setting.h" />
     <ClInclude Include="Shield.h" />
     <ClInclude Include="Shotgun.h" />

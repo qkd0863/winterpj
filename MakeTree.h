@@ -1,6 +1,6 @@
 #include "TreeNode.h"
 #include "Portal.h"
-#include "GameLoop.h"
+
 
 void MakeTree(TreeNode* treeNode,GameLoop* G)
 {
@@ -64,7 +64,7 @@ void MakeTree(TreeNode* treeNode,GameLoop* G)
 			treeNode->GetInfo().height - d));
 		if (roomnum != 3)	//Ã¹¹øÂ° roomnum==3
 			treeNode->MakeHurdle(treeNode->GetRoomInfo());
-		if (roomnum == 10)
+		if (roomnum == 3)
 		{
 			Matrix M = treeNode->GetRoomInfo();
 			Portal* P = new Portal((M.width + M.x) / 2, (M.height + M.y) / 2);

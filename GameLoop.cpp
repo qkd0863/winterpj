@@ -1,6 +1,11 @@
 #include "GameLoop.h"
 #include "setting.h"
 
+void PrintMap();
+
+void MakeTree(TreeNode* treeNode, GameLoop* G);
+void MakeConnect(TreeNode* treeNode);
+
 GameLoop::GameLoop()
 {
 	// 생성자에서 추가 초기화는 필요 없음
@@ -100,12 +105,36 @@ void GameLoop::HandlePlayerMonsterCollision(Object* obj, vector<Object*> object)
 
 void GameLoop::HandlePlayerPortalCollision(Player* playerObj, Object* obj)
 {
-	if (arr[obj->getY()][obj->getX()] == -1 ) // 포탈과 충돌
+	for (auto& otherObj : Objects) 
 	{
+		if (otherObj->objectType == PORTAL)
+		{	
+			if (obj->getX() == otherObj->getX() && obj->getY() == otherObj->getY())
+			{
+				otherObj->setDel(true);
+				roomnum = 2;
 
-		playerObj->RollbackUpdate();
+				TreeNode* treeNode = new TreeNode;
+				treeNode->SetInfo(Matrix(0, 0, SIZE_ARR_X, SIZE_ARR_Y));
+				treeNode->SetParentNode(NULL);
+			
+				memset(arr, 0, sizeof(arr));
+
+
+				MakeTree(treeNode, this);
+				while (1)
+				{
+					MakeConnect(treeNode);
+					if (treeNode->GetLeftNode()->GetRoomInfo().width > 0)
+						break;
+				}
+				
+				system("cls");
+				PrintMap();
+			}
+			
+		}
 	}
-
 }
 
 void GameLoop::MonsterCollision(Object* obj, vector<Object*> object)
