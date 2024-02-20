@@ -21,14 +21,6 @@ void DeleteHurdle::Activate()
 {
 	setDel(true);
 
-	for (int i = 0;i < SIZE_ARR_X;i++)
-	{
-		for (int j = 0;j < SIZE_ARR_Y;j++)
-		{
-			if (arr[j][i] == 1)
-				arr[j][i] = 3;
-		}
-	}
 
 	for (int i = 0;i < SIZE_ARR_X;i++)
 	{
@@ -41,4 +33,15 @@ void DeleteHurdle::Activate()
 			}
 		}
 	}
+
+	for (int i = 0;i < SIZE_ARR_X;i++)
+	{
+		for (int j = 0;j < SIZE_ARR_Y;j++)
+		{
+			if (arr[j][i] == 1)
+				arr[j][i] = 3;
+		}
+	}
+
+	
 }

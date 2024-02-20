@@ -1,5 +1,6 @@
 #include "GameLoop.h"
 #include "setting.h"
+#include "DeleteHurdle.h"
 
 void PrintMap();
 
@@ -56,7 +57,7 @@ void GameLoop::Update()
 			HandlePlayerMonsterCollision(obj, Objects);
 			HandlePlayerMapCollision(playerObj, obj);
 			HandlePlayerPortalCollision(playerObj, obj);
-			HandlePlayerBarrierCollision(playerObj, obj);
+			HandlePlayerItemCollision(playerObj, obj);
 		}
 		else if (obj->objectType == MONSTER)
 		{
@@ -114,7 +115,7 @@ void GameLoop::HandlePlayerMonsterCollision(Object* obj, vector<Object*> object)
 	}
 }
 
-void GameLoop::HandlePlayerBarrierCollision(Player* playerObj, Object* obj)
+void GameLoop::HandlePlayerItemCollision(Player* playerObj, Object* obj)
 {
 	for (auto& otherObj : Objects)
 	{
@@ -125,6 +126,16 @@ void GameLoop::HandlePlayerBarrierCollision(Player* playerObj, Object* obj)
 				playerObj->setBarrier(true);
 				otherObj->setDel(true);
 			}		
+		}
+
+		if (otherObj->objectType == DELETEHURDLE)
+		{
+			if (playerObj->getX() == otherObj->getX() && playerObj->getY() == otherObj->getY())
+			{
+				DeleteHurdle* itemobj = dynamic_cast<DeleteHurdle*>(otherObj);
+				itemobj->Activate();
+				itemobj->setDel(true);
+			}
 		}
 	}
 }

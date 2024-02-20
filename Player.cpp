@@ -69,7 +69,11 @@ void Player::Draw()
 	this->pclass->Draw_BT();
 
 	gotoxy(0, 61);
-	cout << "HP: " << hp;
+	cout << "HP: " << hp << '\t';
+	if (Barrier)
+		cout << "현재 보호막 적용중";
+	else
+		cout << "                       ";
 }
 
 void Player::Update()
