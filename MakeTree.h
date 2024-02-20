@@ -121,5 +121,4 @@ void MakeBossRoom()
 				arr[j][i] = 2;
 		}
 	}
-	
 }

@@ -6,6 +6,8 @@ void PrintMap();
 void MakeTree(TreeNode* treeNode, GameLoop* G);
 void MakeConnect(TreeNode* treeNode);
 void MakeBossRoom();
+void preorder(TreeNode* tree, Matrix* ptr, int rm);
+
 
 GameLoop::GameLoop()
 {
@@ -130,6 +132,14 @@ void GameLoop::HandlePlayerPortalCollision(Player* playerObj, Object* obj)
 						break;
 				}
 				
+				Matrix ptr;
+				preorder(treeNode, &ptr, roomnum);
+				int x = (ptr.width + ptr.x) / 2;
+				int y = (ptr.height + ptr.y) / 2;
+				playerObj->setX(x);
+				playerObj->setX(y);
+				
+
 				system("cls");
 				PrintMap();
 
@@ -142,6 +152,8 @@ void GameLoop::HandlePlayerPortalCollision(Player* playerObj, Object* obj)
 			MakeBossRoom();
 			system("cls");
 			PrintMap();
+			playerObj->setX(29);
+			playerObj->setY(55);
 		}
 	}
 }
@@ -180,4 +192,20 @@ void GameLoop::MonsterCollision(Object* obj, vector<Object*> object)
 			}
 		}
 	}
+}
+
+
+void preorder(TreeNode* tree, Matrix* ptr, int rm)
+{
+	if (tree == nullptr)
+		return;
+	
+	if (tree->GetRoomN() == rm - 1)
+	{
+		*ptr = tree->GetRoomInfo();
+		return;
+	}		
+	preorder(tree->GetLeftNode(), ptr, rm);
+	preorder(tree->GetRightNode(), ptr, rm);
+	
 }

@@ -71,10 +71,6 @@ int main()
 	G.AddObject(&P);
 	G.AddObject(&MGR);
 
-	//Bomb* B = new Bomb;
-
-	//G.AddObject(B);
-
 	system("mode con:cols=200 lines=80");
 	PrintMap();
 	
@@ -82,16 +78,6 @@ int main()
 	{
 		G.Draw();
 		G.Update();
-		//static int cnt = 0;
-		//cnt++;
-		//if (cnt == 10000 )
-		//{
-		//	cnt = 0;
-		//	Bomb* B2 = new Bomb;
-		//
-		//	G.AddObject(B2);
-		//}
-		
 	}
 
 }
