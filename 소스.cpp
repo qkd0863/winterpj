@@ -18,6 +18,7 @@
 
 int arr[SIZE_ARR_X][SIZE_ARR_Y];
 int roomnum = 2;
+int roomcnt = 0;
 GameLoop G;
 
 

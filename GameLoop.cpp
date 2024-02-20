@@ -5,6 +5,7 @@ void PrintMap();
 
 void MakeTree(TreeNode* treeNode, GameLoop* G);
 void MakeConnect(TreeNode* treeNode);
+void MakeBossRoom();
 
 GameLoop::GameLoop()
 {
@@ -107,7 +108,7 @@ void GameLoop::HandlePlayerPortalCollision(Player* playerObj, Object* obj)
 {
 	for (auto& otherObj : Objects) 
 	{
-		if (otherObj->objectType == PORTAL)
+		if (otherObj->objectType == PORTAL && roomcnt < 3)
 		{	
 			if (obj->getX() == otherObj->getX() && obj->getY() == otherObj->getY())
 			{
@@ -131,8 +132,16 @@ void GameLoop::HandlePlayerPortalCollision(Player* playerObj, Object* obj)
 				
 				system("cls");
 				PrintMap();
+
+				roomcnt++;
 			}
-			
+		}
+		if (otherObj->objectType == PORTAL && roomcnt == 3)
+		{
+			otherObj->setDel(true);
+			MakeBossRoom();
+			system("cls");
+			PrintMap();
 		}
 	}
 }

@@ -29,6 +29,7 @@ const int SIZE_ARR_X = 60;
 const int SIZE_ARR_Y = 60;
 extern int arr[SIZE_ARR_X][SIZE_ARR_Y];
 extern int roomnum;
+extern int roomcnt;
 using namespace std;
 
 

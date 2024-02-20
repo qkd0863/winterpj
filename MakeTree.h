@@ -109,3 +109,17 @@ void MakeConnect(TreeNode* treeNode)
 		MakeConnect(treeNode->GetRightNode());
 	}
 }
+void MakeBossRoom()
+{
+	for (int i = 0;i < SIZE_ARR_X;i++)
+	{
+		for (int j = 0;j < SIZE_ARR_Y;j++)
+		{
+			if (j == 0 || i == 0 || j == SIZE_ARR_Y-1 || i == SIZE_ARR_X-1)
+				arr[j][i] = 0;
+			else
+				arr[j][i] = 2;
+		}
+	}
+	
+}
