@@ -212,3 +212,12 @@ void preorder(TreeNode* tree, Matrix* ptr, int rm)
 	preorder(tree->GetRightNode(), ptr, rm);
 	
 }
+
+void GameLoop::DelteAllDH()
+{
+	for (auto& otherObj : Objects)
+	{
+		if (otherObj->objectType == DELETEHURDLE)
+			otherObj->setDel(true);	
+	}
+}

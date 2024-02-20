@@ -21,5 +21,6 @@ public:
 	void HandlePlayerMonsterCollision(Object* obj, vector<Object*> object);
 	void HandlePlayerPortalCollision(Player* playerObj, Object* obj);
 	void MonsterCollision(Object* obj, vector<Object*> object);
+	void DelteAllDH();
 };
 

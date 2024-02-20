@@ -114,6 +114,9 @@
     <ClCompile Include="Portal.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="DeleteHurdle.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameLoop.h">
@@ -198,6 +201,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="PrintMap.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="DeleteHurdle.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

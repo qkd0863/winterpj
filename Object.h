@@ -9,7 +9,8 @@ enum CobjectType {
 	TIMER,
 	BULLET,
 	MAPMGR,
-	PORTAL
+	PORTAL,
+	DELETEHURDLE
 };
 
 class Object

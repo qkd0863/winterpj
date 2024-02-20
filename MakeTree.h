@@ -1,5 +1,6 @@
 #include "TreeNode.h"
 #include "Portal.h"
+#include "DeleteHurdle.h"
 
 
 void MakeTree(TreeNode* treeNode,GameLoop* G)
@@ -73,6 +74,8 @@ void MakeTree(TreeNode* treeNode,GameLoop* G)
 			
 		//if(treeNode->GetParentNode()->GetLeftNode() == treeNode)
 		//	treeNode->MakeConnection();
+
+
 		return;
 	}
 	treeNode->MakeLeftTree(new TreeNode);
