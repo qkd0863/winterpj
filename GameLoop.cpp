@@ -144,6 +144,7 @@ void GameLoop::HandlePlayerPortalCollision(Player* playerObj, Object* obj)
 				PrintMap();
 
 				roomcnt++;
+				PrintProgrees();
 			}
 		}
 		if (otherObj->objectType == PORTAL && roomcnt == 3)
@@ -154,7 +155,9 @@ void GameLoop::HandlePlayerPortalCollision(Player* playerObj, Object* obj)
 			PrintMap();
 			playerObj->setX(29);
 			playerObj->setY(55);
+			PrintProgrees();
 		}
+		
 	}
 }
 

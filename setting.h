@@ -42,3 +42,5 @@ struct xy
 };
 
 
+
+void PrintProgrees();
