@@ -10,7 +10,8 @@ enum CobjectType {
 	BULLET,
 	MAPMGR,
 	PORTAL,
-	DELETEHURDLE
+	DELETEHURDLE,
+	BARRIER
 };
 
 class Object

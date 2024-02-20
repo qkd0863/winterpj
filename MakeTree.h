@@ -1,6 +1,7 @@
 #include "TreeNode.h"
 #include "Portal.h"
 #include "DeleteHurdle.h"
+#include "Barrier.h"
 
 
 void MakeTree(TreeNode* treeNode,GameLoop* G)
@@ -74,6 +75,22 @@ void MakeTree(TreeNode* treeNode,GameLoop* G)
 			
 		//if(treeNode->GetParentNode()->GetLeftNode() == treeNode)
 		//	treeNode->MakeConnection();
+
+		/* {
+			int n = rand() % 10;
+			if (n == 0 && roomnum != 3);
+			{
+				Matrix M = treeNode->GetRoomInfo();
+				DeleteHurdle* DH = new DeleteHurdle((M.width + M.x) / 2, (M.height + M.y) / 2);
+				G->AddObject(DH);
+			}
+		}
+		*/
+
+
+		Matrix M = treeNode->GetRoomInfo();
+		Barrier* BA = new Barrier((M.width + M.x + 2) / 2, (M.height + M.y + 2) / 2);
+		G->AddObject(BA);
 
 
 		return;

@@ -26,6 +26,7 @@ private:
 	//int atkx = 0, atky = 0;
 	int dir;
 	double count;
+	BOOL Barrier = false;
 	Timer Cnt;
 	string Cname;
 	Cclass* pclass;
@@ -34,12 +35,14 @@ public:
 	int getX();
 	int getY();
 	int getDir(); // 방향 리턴
+	BOOL getBarrier() { return Barrier; }
 	void setX(int _x);
 	void setY(int _y);
 	void setDir(int _dir); // 방향 설정
 	void action();
 	void attack();
 	void DrawSpace(int x, int y);
+	void setBarrier(BOOL _b) { Barrier = _b; }
 	virtual void Draw();
 	virtual void Update();
 	void KeyEvent(int input);

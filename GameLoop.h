@@ -20,7 +20,8 @@ public:
 	void HandlePlayerMapCollision(Player* playerObj, Object* obj);
 	void HandlePlayerMonsterCollision(Object* obj, vector<Object*> object);
 	void HandlePlayerPortalCollision(Player* playerObj, Object* obj);
+	void HandlePlayerBarrierCollision(Player* playerObj, Object* obj);
 	void MonsterCollision(Object* obj, vector<Object*> object);
-	void DelteAllDH();
+	void DeleteAllDH();
 };
 

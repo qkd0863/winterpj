@@ -56,6 +56,7 @@ void GameLoop::Update()
 			HandlePlayerMonsterCollision(obj, Objects);
 			HandlePlayerMapCollision(playerObj, obj);
 			HandlePlayerPortalCollision(playerObj, obj);
+			HandlePlayerBarrierCollision(playerObj, obj);
 		}
 		else if (obj->objectType == MONSTER)
 		{
@@ -99,9 +100,31 @@ void GameLoop::HandlePlayerMonsterCollision(Object* obj, vector<Object*> object)
 			Monster* monsterobj = dynamic_cast<Monster*>(otherObj);
 			if (obj->getX() == monsterobj->getX() && obj->getY() == monsterobj->getY())
 			{
+				if (playerObj->getBarrier())
+				{
+					playerObj->setBarrier(false);
+					monsterobj->setDel(true);
+					continue;
+				}
+
 				playerObj->calculateDamage(monsterobj->getDamage());
 				playerObj->RollbackUpdate(); // 일단은 롤백 추후 HP 감소로 변경
 			}
+		}
+	}
+}
+
+void GameLoop::HandlePlayerBarrierCollision(Player* playerObj, Object* obj)
+{
+	for (auto& otherObj : Objects)
+	{
+		if (otherObj->objectType == BARRIER)
+		{
+			if (playerObj->getX() == otherObj->getX() && playerObj->getY() == otherObj->getY())
+			{
+				playerObj->setBarrier(true);
+				otherObj->setDel(true);
+			}		
 		}
 	}
 }
@@ -114,6 +137,7 @@ void GameLoop::HandlePlayerPortalCollision(Player* playerObj, Object* obj)
 		{	
 			if (obj->getX() == otherObj->getX() && obj->getY() == otherObj->getY())
 			{
+				
 				otherObj->setDel(true);
 				roomnum = 2;
 
@@ -136,8 +160,8 @@ void GameLoop::HandlePlayerPortalCollision(Player* playerObj, Object* obj)
 				preorder(treeNode, &ptr, roomnum);
 				int x = (ptr.width + ptr.x) / 2;
 				int y = (ptr.height + ptr.y) / 2;
-				playerObj->setX(x);
-				playerObj->setX(y);
+				playerObj->setX(10);
+				playerObj->setX(10);
 				
 
 				system("cls");
@@ -145,6 +169,7 @@ void GameLoop::HandlePlayerPortalCollision(Player* playerObj, Object* obj)
 
 				roomcnt++;
 				PrintProgrees();
+				continue;
 			}
 		}
 		if (otherObj->objectType == PORTAL && roomcnt == 3)
@@ -180,6 +205,7 @@ void GameLoop::MonsterCollision(Object* obj, vector<Object*> object)
 			Player* playerObj = dynamic_cast<Player*>(otherObj);
 			if (playerObj == nullptr) { continue; }
 			Cclass* temp = playerObj->getPclass();
+
 			for (auto it = temp->weapon->bt.begin(); it != temp->weapon->bt.end();)
 			{
 				if ((obj->getX() == it->getX()) && (obj->getY() == it->getY()))
@@ -213,7 +239,7 @@ void preorder(TreeNode* tree, Matrix* ptr, int rm)
 	
 }
 
-void GameLoop::DelteAllDH()
+void GameLoop::DeleteAllDH()
 {
 	for (auto& otherObj : Objects)
 	{

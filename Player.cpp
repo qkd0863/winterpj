@@ -64,7 +64,7 @@ void Player::DrawSpace(int a, int b)
 void Player::Draw()
 {
 	gotoxy(x * 2, y);
-	cout << "P";
+	cout << "P ";
 
 	this->pclass->Draw_BT();
 
