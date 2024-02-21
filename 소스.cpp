@@ -47,7 +47,7 @@ int main()
 			break;
 	}
 
-
+	int order = 0;
 	
 	
 	Player P;
@@ -58,6 +58,19 @@ int main()
 	Map M;
 	Timer T;
 	MapMgr MGR;
+
+	cout << "직업을 선택하세요. 1. Gunner 2. Knight" << endl;
+	cin >> order;
+
+	switch (order)
+	{
+	case 1:
+	case 2:
+		P.SelectClass(order);
+		break;
+	default:
+		break;
+	}
 
 	clock_t starttime = 0, endtime = 0;
 	clock_t time = 0;

@@ -89,12 +89,6 @@ void MakeTree(TreeNode* treeNode,GameLoop* G)
 				G->AddObject(DH);
 			}
 		}
-		
-
-
-	
-	
-
 
 		return;
 	}
