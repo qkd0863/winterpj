@@ -3,7 +3,7 @@
 class Zombie : public Monster
 {
 public:
-	Zombie();
+	Zombie(int _x, int _y);
 	void Draw() override;
 private:
 };

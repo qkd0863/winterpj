@@ -1,6 +1,9 @@
 #include "GameLoop.h"
 #include "setting.h"
 #include "DeleteHurdle.h"
+#include "Portal.h"
+#include "Barrier.h"
+#include "Zombie.h"
 
 void PrintMap();
 
@@ -45,6 +48,8 @@ void GameLoop::Draw()
 
 void GameLoop::Update()
 {
+	BOOL Collision = false;
+
 	for (auto& obj : Objects)
 	{
 		if (obj == nullptr) { break; }
@@ -56,7 +61,7 @@ void GameLoop::Update()
 			Player* playerObj = dynamic_cast<Player*>(obj);
 			HandlePlayerMonsterCollision(obj, Objects);
 			HandlePlayerMapCollision(playerObj, obj);
-			HandlePlayerPortalCollision(playerObj, obj);
+			Collision = HandlePlayerPortalCollision(playerObj, obj);
 			HandlePlayerItemCollision(playerObj, obj);
 		}
 		else if (obj->objectType == MONSTER)
@@ -66,6 +71,21 @@ void GameLoop::Update()
 
 	}
 
+
+	if (Collision)
+	{
+		Portal* P = new Portal(5, 5);
+		AddObject(P);
+
+		Barrier* B = new Barrier(4, 4);
+		AddObject(B);
+
+		DeleteHurdle* D = new DeleteHurdle(6, 6);
+		AddObject(D);
+
+		Zombie* Z = new Zombie(7, 7);
+		AddObject(Z);
+	}
 	Objects.erase(std::remove_if(Objects.begin(), Objects.end(), [](Object* obj) { return obj != nullptr && obj->getDel(); }), Objects.end());
 }
 
@@ -140,7 +160,7 @@ void GameLoop::HandlePlayerItemCollision(Player* playerObj, Object* obj)
 	}
 }
 
-void GameLoop::HandlePlayerPortalCollision(Player* playerObj, Object* obj)
+BOOL GameLoop::HandlePlayerPortalCollision(Player* playerObj, Object* obj)
 {
 	for (auto& otherObj : Objects) 
 	{
@@ -148,8 +168,9 @@ void GameLoop::HandlePlayerPortalCollision(Player* playerObj, Object* obj)
 		{	
 			if (obj->getX() == otherObj->getX() && obj->getY() == otherObj->getY())
 			{
-				
-				otherObj->setDel(true);
+				Portal* PortalObj = dynamic_cast<Portal*>(otherObj);
+				PortalObj->setDel(true);
+
 				roomnum = 2;
 
 				TreeNode* treeNode = new TreeNode;
@@ -174,27 +195,33 @@ void GameLoop::HandlePlayerPortalCollision(Player* playerObj, Object* obj)
 				playerObj->setX(10);
 				playerObj->setX(10);
 				
-
 				system("cls");
 				PrintMap();
 
 				roomcnt++;
 				PrintProgrees();
-				continue;
+				
+				return true;
 			}
 		}
 		if (otherObj->objectType == PORTAL && roomcnt == 3)
 		{
-			otherObj->setDel(true);
-			MakeBossRoom();
-			system("cls");
-			PrintMap();
-			playerObj->setX(29);
-			playerObj->setY(55);
-			PrintProgrees();
+			if (obj->getX() == otherObj->getX() && obj->getY() == otherObj->getY())
+			{
+				otherObj->setDel(true);
+				MakeBossRoom();
+				system("cls");
+				PrintMap();
+				playerObj->setX(29);
+				playerObj->setY(55);
+				PrintProgrees();
+
+				return true;
+			}
 		}
-		
 	}
+
+	return false;
 }
 
 void GameLoop::MonsterCollision(Object* obj, vector<Object*> object)

@@ -2,7 +2,9 @@
 #include "Portal.h"
 #include "DeleteHurdle.h"
 #include "Barrier.h"
+#include "Zombie.h"
 
+void GenerateMonster(int n, Matrix M, GameLoop* G);
 
 void MakeTree(TreeNode* treeNode,GameLoop* G)
 {
@@ -66,15 +68,16 @@ void MakeTree(TreeNode* treeNode,GameLoop* G)
 			treeNode->GetInfo().height - d));
 		if (roomnum != 3)	//ù��° roomnum==3
 			treeNode->MakeHurdle(treeNode->GetRoomInfo());
-		if (roomnum == 3)
+		
+		
+		/*if (roomnum == 3)
 		{
 			Matrix M = treeNode->GetRoomInfo();
 			Portal* P = new Portal((M.width + M.x) / 2, (M.height + M.y) / 2);
 			G->AddObject(P);
-
-
-	
-	
+		}
+	*/
+		
 
 
 		return;
@@ -125,4 +128,28 @@ void MakeBossRoom()
 				arr[j][i] = 2;
 		}
 	}
+}
+
+void GenerateMonster(int n, Matrix M, GameLoop *G)
+{
+	switch (n)
+	{
+	case 0:
+	{
+		Zombie* Z = new Zombie((M.width + M.x) / 2, (M.height + M.y) / 2);
+		G->AddObject(Z);
+	}
+		break;
+	case 1:
+		//Troll * T = new Troll((M.width + M.x) / 2, (M.height + M.y) / 2);
+		//G.AddObject(T);
+		break;
+	case 2:
+		//Hydra * J = new Hydra((M.width + M.x) / 2, (M.height + M.y) / 2);
+		//G.AddObject(H);
+		break;
+	default:
+		break;
+	}
+
 }

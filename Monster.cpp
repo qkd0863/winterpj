@@ -12,7 +12,7 @@ Monster::Monster()
 	{
 		x = rand() % Map_x;
 		y = rand() % Map_y;
-		if (arr[y][x] == 1)
+		if (arr[y][x] == 0)
 		{
 			break;
 		}

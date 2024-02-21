@@ -1,10 +1,10 @@
 #include "Zombie.h"
 
-Zombie::Zombie()
+Zombie::Zombie(int _x, int _y)
 {
 	hp = 10;
 	damage = 3;
-	x = 7, y = 7;
+	x = _x, y = _y;
 }
 
 void Zombie::Draw()

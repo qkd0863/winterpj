@@ -51,10 +51,6 @@ int main()
 	
 	
 	Player P;
-	Troll troll;
-	Zombie zombie;
-	Hydra hydra;
-	//Dragon hydra;
 	Map M;
 	Timer T;
 	MapMgr MGR;
@@ -77,16 +73,15 @@ int main()
 	G.AddObject(&T);
 	
 	G.AddObject(&M);
-	G.AddObject(&troll);
-	G.AddObject(&zombie);
-	G.AddObject(&hydra);
 	G.AddObject(&P);
-	G.AddObject(&MGR);
 
 	system("mode con:cols=200 lines=80");
 	PrintMap();
 	PrintProgrees();
 
+		
+	Portal* PO = new Portal(6, 6);
+	G.AddObject(PO);
 	
 
 	while (1)
