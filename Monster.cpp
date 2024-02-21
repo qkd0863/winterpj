@@ -17,6 +17,8 @@ Monster::Monster()
 			break;
 		}
 	}
+	mx = x;
+	my = y;
 	hp = 10;
 	objectType = MONSTER;
 }
@@ -73,21 +75,28 @@ void Monster::Update()
 			switch (action)
 			{
 			case 0:
-				x++;
+				mx++;
 				break;
 			case 1:
-				x--;
+				mx--;
 				break;
 			case 2:
-				y++;
+				my++;
 				break;
 			case 3:
-				y--;
+				my--;
 				break;
 			}
 			if (arr[y][x] != 0)
 			{
+				x = mx;
+				y = my;
 				break;
+			}
+			else
+			{
+				mx = x;
+				my = y;
 			}
 		}
 	
