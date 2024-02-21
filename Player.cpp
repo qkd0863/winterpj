@@ -219,13 +219,12 @@ void Player::SelectClass(int num)
 		Cname = "Gunner";
 		pclass = new Gunner();
 	}
-	else if (num == 2)
+	else if(num == 2)
 	{
 		Cname = "Knight";
 		pclass = new Knight();
 	}
 }
-
 void Player::setDir(int _dir)
 {
 	dir = _dir;
