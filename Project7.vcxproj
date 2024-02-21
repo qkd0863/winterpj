@@ -127,9 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Barrier.cpp" />
     <ClCompile Include="Bomb.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Cclass.cpp" />
+    <ClCompile Include="DeleteHurdle.cpp" />
     <ClCompile Include="Dragon.cpp" />
     <ClCompile Include="Energyvolt.cpp" />
     <ClCompile Include="GameLoop.cpp" />
@@ -138,11 +140,13 @@
     <ClCompile Include="Knight.cpp" />
     <ClCompile Include="Magician.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="MapMgr.cpp" />
     <ClCompile Include="Melee.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Pistol.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Portal.cpp" />
     <ClCompile Include="setting.cpp" />
     <ClCompile Include="Shield.cpp" />
     <ClCompile Include="Shotgun.cpp" />
@@ -154,9 +158,11 @@
     <ClCompile Include="소스.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Barrier.h" />
     <ClInclude Include="Bomb.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Cclass.h" />
+    <ClInclude Include="DeleteHurdle.h" />
     <ClInclude Include="Dragon.h" />
     <ClInclude Include="Energyvolt.h" />
     <ClInclude Include="GameLoop.h" />
@@ -164,12 +170,16 @@
     <ClInclude Include="Hydra.h" />
     <ClInclude Include="Knight.h" />
     <ClInclude Include="Magician.h" />
+    <ClInclude Include="MakeTree.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="MapMgr.h" />
     <ClInclude Include="Melee.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Pistol.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Portal.h" />
+    <ClInclude Include="PrintMap.h" />
     <ClInclude Include="setting.h" />
     <ClInclude Include="Shield.h" />
     <ClInclude Include="Shotgun.h" />

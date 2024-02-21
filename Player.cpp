@@ -64,12 +64,16 @@ void Player::DrawSpace(int a, int b)
 void Player::Draw()
 {
 	gotoxy(x * 2, y);
-	cout << "P";
+	cout << "P ";
 
 	this->pclass->Draw_BT();
 
 	gotoxy(0, 61);
-	cout << "HP: " << hp;
+	cout << "HP: " << hp << '\t';
+	if (Barrier)
+		cout << "현재 보호막 적용중";
+	else
+		cout << "                       ";
 }
 
 void Player::Update()
@@ -95,7 +99,7 @@ void Player::KeyEvent(int input)
 {
 	gotoxy(0, 22);
 	static int a = 0;
-
+	
 	if (this->pclass->isSkill)
 	{
 		switch (input)

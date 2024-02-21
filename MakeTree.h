@@ -64,32 +64,13 @@ void MakeTree(TreeNode* treeNode,GameLoop* G)
 			treeNode->GetInfo().y + c,
 			treeNode->GetInfo().width - b,
 			treeNode->GetInfo().height - d));
-		if (roomnum != 3)	//ù��° roomnum==3
+		if (roomnum != 3)	//ù��° roomnum==3
 			treeNode->MakeHurdle(treeNode->GetRoomInfo());
 		if (roomnum == 3)
 		{
 			Matrix M = treeNode->GetRoomInfo();
 			Portal* P = new Portal((M.width + M.x) / 2, (M.height + M.y) / 2);
 			G->AddObject(P);
-
-
-			//Barrier* BA = new Barrier((M.width + M.x + 2) / 2, (M.height + M.y + 2) / 2);
-			//G->AddObject(BA);
-		}
-			
-		//if(treeNode->GetParentNode()->GetLeftNode() == treeNode)
-		//	treeNode->MakeConnection();
-
-		{
-			//int n = rand() % 10;
-			//if (n == 0 && roomnum != 3);
-			//{
-			//	Matrix M = treeNode->GetRoomInfo();
-			//	DeleteHurdle* DH = new DeleteHurdle((M.width + M.x-2) / 2, (M.height + M.y-2) / 2);
-			//	G->AddObject(DH);
-			//}
-		}
-		
 
 
 	

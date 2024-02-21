@@ -4,6 +4,7 @@ Zombie::Zombie()
 {
 	hp = 10;
 	damage = 3;
+	x = 7, y = 7;
 }
 
 void Zombie::Draw()

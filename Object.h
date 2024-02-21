@@ -7,7 +7,11 @@ enum CobjectType {
 	MAP,
 	BOMB,
 	TIMER,
-	BULLET
+	BULLET,
+	MAPMGR,
+	PORTAL,
+	DELETEHURDLE,
+	BARRIER
 };
 
 class Object
@@ -27,6 +31,7 @@ public:
 	virtual void calculateDamage(int damage);
 	void setDel(BOOL _d) { del = _d; };
 	BOOL getDel() { return del; };
+	
 
 };
 

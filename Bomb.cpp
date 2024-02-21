@@ -41,7 +41,7 @@ void Bomb::Explosion()
 	{
 		for (int j = -2;j < 3;j++)
 		{
-			arr[y + j][x + i] = 1;
+			arr[y + j][x + i] = 3;
 		}
 	}
 }

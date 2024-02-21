@@ -19,6 +19,9 @@ public:
 	void Update();
 	void HandlePlayerMapCollision(Player* playerObj, Object* obj);
 	void HandlePlayerMonsterCollision(Object* obj, vector<Object*> object);
+	void HandlePlayerPortalCollision(Player* playerObj, Object* obj);
+	void HandlePlayerItemCollision(Player* playerObj, Object* obj);
 	void MonsterCollision(Object* obj, vector<Object*> object);
+	void DeleteAllDH();
 };
 
