@@ -31,6 +31,8 @@ private:
 	string Cname;
 	Cclass* pclass;
 public:
+	BOOL AddBomb = false;
+public:
 	Player();
 	int getX();
 	int getY();

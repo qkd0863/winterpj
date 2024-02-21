@@ -49,7 +49,7 @@ void GameLoop::Draw()
 void GameLoop::Update()
 {
 	BOOL Collision = false;
-
+	Player* pObj = nullptr;
 	for (auto& obj : Objects)
 	{
 		if (obj == nullptr) { break; }
@@ -59,6 +59,7 @@ void GameLoop::Update()
 		if (obj->objectType == PLAYER) // 플레이어가
 		{
 			Player* playerObj = dynamic_cast<Player*>(obj);
+			pObj = dynamic_cast<Player*>(obj);
 			HandlePlayerMonsterCollision(obj, Objects);
 			HandlePlayerMapCollision(playerObj, obj);
 			Collision = HandlePlayerPortalCollision(playerObj, obj);
@@ -72,8 +73,29 @@ void GameLoop::Update()
 	}
 
 
+	BOOL addBomb = false;
+	for (auto& obj : Objects)
+	{
+		if (obj->objectType == PLAYER)
+		{
+			Player* playerObj = dynamic_cast<Player*>(obj);
+			if (playerObj->AddBomb)
+			{
+				addBomb = true;
+			}
+		}
+	}
+	if (addBomb)
+	{
+		Bomb* P = new Bomb(pObj->getX(), pObj->getY());
+		AddObject(P);
+		pObj->AddBomb = false;
+	}
+	
+
 	if (Collision)
 	{
+		
 		Portal* P = new Portal(5, 5);
 		AddObject(P);
 

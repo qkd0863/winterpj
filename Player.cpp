@@ -188,8 +188,7 @@ void Player::KeyEvent(int input)
 			break;
 		case Q:
 		{
-			Bomb* B = new Bomb(x, y);
-			G.AddObject(B);
+			AddBomb = true;
 		}
 			break;
 		default:
