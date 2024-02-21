@@ -1,132 +1,10 @@
-#include <stdio.h>
-#include <conio.h>
-#include <windows.h>
-#include <time.h>
-#include "Player.h"
-#include "Monster.h"
-#include "setting.h"
-#include "Map.h"
-#include "GameLoop.h"
-#include "Timer.h"
-#include "Hydra.h"
-#include "Zombie.h"
-#include "Troll.h"
-#include "Dragon.h"
-
-int arr[SIZE_ARR_X][SIZE_ARR_Y];
-GameLoop G;
+#include "TreeNode.h"
+#include "Portal.h"
+#include "DeleteHurdle.h"
+#include "Barrier.h"
 
 
-void MakeTree(TreeNode* treeNode);
-void MakeConnect(TreeNode* treeNode);
-
-int main()
-{
-	srand((unsigned int)time(NULL));
-	CONSOLE_CURSOR_INFO cursorInfo = { 0, };
-	cursorInfo.dwSize = 1;
-	cursorInfo.bVisible = FALSE;
-	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
-	
-	TreeNode* treeNode = new TreeNode;
-	treeNode->SetInfo(Matrix(0, 0, SIZE_ARR_X, SIZE_ARR_Y));
-	treeNode->SetParentNode(NULL);
-	srand(time(NULL));
-	memset(arr, 0, sizeof(arr));
-
-
-	MakeTree(treeNode);
-	while (1)
-	{
-		MakeConnect(treeNode);
-		if (treeNode->GetLeftNode()->GetRoomInfo().width > 0)
-			break;
-	}
-
-	int order = 0;
-	
-	
-	Player P;
-	Troll troll;
-	Zombie zombie;
-	Hydra hydra;
-	//Dragon hydra;
-	Map M;
-	Timer T;
-
-	cout << "직업을 선택해주세요. 1. Gunner 2. Knight" << endl;
-	cin >> order;
-	switch (order)
-	{
-	case 1:
-	case 2:
-		P.SelectClass(order);
-		break;
-	default:
-		break;
-	}
-
-	clock_t starttime = 0, endtime = 0;
-	clock_t time = 0;
-
-	G.AddObject(&T);
-	
-	G.AddObject(&M);
-	G.AddObject(&troll);
-	G.AddObject(&zombie);
-	G.AddObject(&hydra);
-	G.AddObject(&P);
-
-	//Bomb* B = new Bomb;
-
-	//G.AddObject(B);
-
-	system("mode con:cols=200 lines=80");
-
-	for (int i = 0; i < SIZE_ARR_Y; i++)
-	{
-		for (int j = 0; j < SIZE_ARR_X; j++)
-		{
-			gotoxy(j * 2, i);
-			if (arr[i][j] == 2)
-			{
-				printf("%c", 'X');
-			}
-			if (arr[i][j] == 1)
-			{
-				printf("%c", ' ');
-			}
-			if (arr[i][j] == 0)
-			{
-				printf("%c", '+');
-			}
-
-		}
-	}
-	while (1)
-	{
-		G.Draw();
-		G.Update();
-		//static int cnt = 0;
-		//cnt++;
-		//if (cnt == 10000 )
-		//{
-		//	cnt = 0;
-		//	Bomb* B2 = new Bomb;
-		//
-		//	G.AddObject(B2);
-		//}
-		
-	}
-
-}
-
-
-
-
-
-
-void MakeTree(TreeNode* treeNode)
+void MakeTree(TreeNode* treeNode,GameLoop* G)
 {
 	Matrix mat1, mat2;
 
@@ -176,29 +54,60 @@ void MakeTree(TreeNode* treeNode)
 		{
 			for (int j = treeNode->GetInfo().x + a; j < treeNode->GetInfo().width - b; j++)
 			{
-				arr[i][j] = 1;
+				arr[i][j] = roomnum;
 			}
 		}
+		treeNode->SetRoomN(roomnum);
+		roomnum++;
 		treeNode->SetSolo(true);
 		treeNode->SetRoomInfo(Matrix(treeNode->GetInfo().x + a,
 			treeNode->GetInfo().y + c,
 			treeNode->GetInfo().width - b,
 			treeNode->GetInfo().height - d));
-		treeNode->MakeHurdle(treeNode->GetRoomInfo());
+		if (roomnum != 3)	//첫번째 roomnum==3
+			treeNode->MakeHurdle(treeNode->GetRoomInfo());
+		if (roomnum == 3)
+		{
+			Matrix M = treeNode->GetRoomInfo();
+			Portal* P = new Portal((M.width + M.x) / 2, (M.height + M.y) / 2);
+			G->AddObject(P);
+
+
+			//Barrier* BA = new Barrier((M.width + M.x + 2) / 2, (M.height + M.y + 2) / 2);
+			//G->AddObject(BA);
+		}
+			
 		//if(treeNode->GetParentNode()->GetLeftNode() == treeNode)
 		//	treeNode->MakeConnection();
+
+		{
+			//int n = rand() % 10;
+			//if (n == 0 && roomnum != 3);
+			//{
+			//	Matrix M = treeNode->GetRoomInfo();
+			//	DeleteHurdle* DH = new DeleteHurdle((M.width + M.x-2) / 2, (M.height + M.y-2) / 2);
+			//	G->AddObject(DH);
+			//}
+		}
+		
+
+
+	
+	
+
+
 		return;
 	}
 	treeNode->MakeLeftTree(new TreeNode);
 	treeNode->GetLeftNode()->SetInfo(mat1);
 	treeNode->GetLeftNode()->SetParentNode(treeNode);
 	treeNode->GetLeftNode()->SetDirection(direction);
-	MakeTree(treeNode->GetLeftNode());
+	MakeTree(treeNode->GetLeftNode(),G);
 	treeNode->MakeRightTree(new TreeNode);
 	treeNode->GetRightNode()->SetInfo(mat2);
 	treeNode->GetRightNode()->SetParentNode(treeNode);
 	treeNode->GetRightNode()->SetDirection(direction);
-	MakeTree(treeNode->GetRightNode());
+	MakeTree(treeNode->GetRightNode(),G);
 	return;
 }
 void MakeConnect(TreeNode* treeNode)
@@ -221,5 +130,18 @@ void MakeConnect(TreeNode* treeNode)
 	{
 		MakeConnect(treeNode->GetLeftNode());
 		MakeConnect(treeNode->GetRightNode());
+	}
+}
+void MakeBossRoom()
+{
+	for (int i = 0;i < SIZE_ARR_X;i++)
+	{
+		for (int j = 0;j < SIZE_ARR_Y;j++)
+		{
+			if (j == 0 || i == 0 || j == SIZE_ARR_Y-1 || i == SIZE_ARR_X-1)
+				arr[j][i] = 0;
+			else
+				arr[j][i] = 2;
+		}
 	}
 }

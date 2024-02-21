@@ -208,6 +208,20 @@ void Player::MoveToPosition()
 	rx = x, ry = y;
 }
 
+void Player::SelectClass(int num)
+{
+	if (num == 1)
+	{
+		Cname = "Gunner";
+		pclass = new Gunner();
+	}
+	else if(num == 2)
+	{
+		Cname = "Knight";
+		pclass = new Knight();
+	}
+}
+
 void Player::setDir(int _dir)
 {
 	dir = _dir;

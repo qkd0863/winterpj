@@ -8,6 +8,7 @@ protected:
 	int damage;
 	double turn = 0;
 	Timer Cnt;
+	int mx, my;
 public:
 	Monster();
 	int getX();

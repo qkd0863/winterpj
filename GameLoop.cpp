@@ -101,15 +101,16 @@ void GameLoop::MonsterCollision(Object* obj, vector<Object*> object)
 {
 	for (auto& otherObj : object)
 	{
+		if (otherObj == nullptr)
+		{
+			continue;
+		}
+
 		if (&obj == &otherObj)
 		{
 			continue;
 		}
 
-		if (otherObj == nullptr)
-		{
-			continue;
-		}
 
 		if (otherObj->objectType == PLAYER)
 		{
