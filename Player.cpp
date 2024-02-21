@@ -93,6 +93,12 @@ void Player::Update()
 	}
 
 	this->pclass->Update_BT();
+
+	if (hp <= 0)
+	{
+		hp = 0;
+		exit(1);
+	}
 }
 
 void Player::KeyEvent(int input)

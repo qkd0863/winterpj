@@ -11,7 +11,8 @@ enum CobjectType {
 	MAPMGR,
 	PORTAL,
 	DELETEHURDLE,
-	BARRIER
+	BARRIER,
+	BOSS
 };
 
 class Object
@@ -19,8 +20,8 @@ class Object
 protected:
 	int x, y;
 	int hp;
-private:
 	BOOL del = false;
+private:
 public:
 	CobjectType objectType;
 	virtual void Draw();

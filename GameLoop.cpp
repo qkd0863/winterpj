@@ -4,6 +4,7 @@
 #include "Portal.h"
 #include "Barrier.h"
 #include "Zombie.h"
+#include "Dragon.h"
 
 void PrintMap();
 
@@ -54,7 +55,6 @@ void GameLoop::Update()
 	{
 		if (obj == nullptr) { break; }
 
-		obj->Update();
 
 		if (obj->objectType == PLAYER) // 플레이어가
 		{
@@ -65,11 +65,12 @@ void GameLoop::Update()
 			Collision = HandlePlayerPortalCollision(playerObj, obj);
 			HandlePlayerItemCollision(playerObj, obj);
 		}
-		else if (obj->objectType == MONSTER)
+		else if (obj->objectType == MONSTER || obj->objectType == BOSS)
 		{
 			MonsterCollision(obj, Objects);
 		}
 
+		obj->Update();
 	}
 
 
@@ -94,8 +95,7 @@ void GameLoop::Update()
 	
 
 	if (Collision)
-	{
-		
+	{	
 		Portal* P = new Portal(5, 5);
 		AddObject(P);
 
@@ -107,6 +107,7 @@ void GameLoop::Update()
 
 		Zombie* Z = new Zombie(7, 7);
 		AddObject(Z);
+
 	}
 	Objects.erase(std::remove_if(Objects.begin(), Objects.end(), [](Object* obj) { return obj != nullptr && obj->getDel(); }), Objects.end());
 }
@@ -138,7 +139,7 @@ void GameLoop::HandlePlayerMonsterCollision(Object* obj, vector<Object*> object)
 		}
 
 
-		if (otherObj->objectType == MONSTER)
+		if (otherObj->objectType == MONSTER || otherObj->objectType == BOSS)
 		{
 			Monster* monsterobj = dynamic_cast<Monster*>(otherObj);
 			if (obj->getX() == monsterobj->getX() && obj->getY() == monsterobj->getY())
@@ -230,12 +231,26 @@ BOOL GameLoop::HandlePlayerPortalCollision(Player* playerObj, Object* obj)
 		{
 			if (obj->getX() == otherObj->getX() && obj->getY() == otherObj->getY())
 			{
+				for (auto Mobj : Objects)
+				{
+					if (Mobj == nullptr)
+					{
+						continue;
+					}
+
+					if (Mobj->objectType == MONSTER)
+					{
+						Mobj->setDel(true);
+					}
+				}
 				otherObj->setDel(true);
 				MakeBossRoom();
 				system("cls");
 				PrintMap();
 				playerObj->setX(29);
 				playerObj->setY(55);
+				Dragon* dragon = new Dragon();
+				AddObject(dragon);
 				PrintProgrees();
 
 				return true;
